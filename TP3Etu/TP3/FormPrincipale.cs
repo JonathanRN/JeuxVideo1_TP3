@@ -10,11 +10,13 @@ namespace TP3
     {
       InitializeComponent( );
     }
+      
 
     #region Code fourni
     
     // Représentation visuelles du jeu en mémoire.
-    PictureBox[,] toutesImagesVisuelles = null;
+     PictureBox[,] toutesImagesVisuelles = null;
+        
     
     /// <summary>
     /// Gestionnaire de l'événement se produisant lors du premier affichage 
@@ -27,8 +29,7 @@ namespace TP3
       // Ne pas oublier de mettre en place les valeurs nécessaires à une partie.
       ExecuterTestsUnitaires();
       InitialiserSurfaceDeJeu(20,10);
-			testfonction();
-            ChangerPictureBoxCouleur();
+
     }
 
     private void InitialiserSurfaceDeJeu(int nbLignes, int nbCols)
@@ -89,18 +90,7 @@ namespace TP3
       
       // Clean-up
     }
-        void ChangerPictureBoxCouleur()
-        {
-            toutesImagesVisuelles[1, 1].BackColor = Color.Red;
-        }
 
-		int testfonction()
-		{
-			int nombre1 = 1;
-			int nombre2 = 2;
-
-			return nombre1 * nombre2;
-		}
 
     #endregion
 
