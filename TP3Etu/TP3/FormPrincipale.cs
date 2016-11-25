@@ -4,9 +4,9 @@ using System.Windows.Forms;
 
 namespace TP3
 {
-  public partial class Form1 : Form
+  public partial class FormPrincipale : Form
   {
-    public Form1( )
+    public FormPrincipale( )
     {
       InitializeComponent( );
     }
