@@ -6,7 +6,21 @@ namespace TP3
 {
   public partial class FormPrincipale : Form
   {
-    public FormPrincipale( )
+		#region Propriétés /  variables partagées par toutes les méthodes.
+		//Nombre de colonnes dans le jeu
+		int nbColonnesJeu = 10;
+		//Nombre de lignes dans le jeu
+		int nbLignesJeu = 20;
+		//Énumération des différents types de blocs dans le jeu
+		enum TypeBloc { None, Gelé, Carré, Ligne, T, L, J, S, Z };
+
+		TypeBloc[,] tableauDeJeu = new TypeBloc[nbLignesJeu, 20];
+
+		//Initialisation du tableau de jeu
+
+		#endregion
+
+		public FormPrincipale( )
     {
       InitializeComponent( );
     }
@@ -63,10 +77,6 @@ namespace TP3
     }
     #endregion
 
-
-
-
-
     #region Code à développer
     /// <summary>
     /// Faites ici les appels requis pour vos tests unitaires.
@@ -103,15 +113,5 @@ namespace TP3
 		}
 
     #endregion
-
-
   }
-
-
-
-
-
-
-
-
 }
