@@ -27,6 +27,7 @@ namespace TP3
       // Ne pas oublier de mettre en place les valeurs nécessaires à une partie.
       ExecuterTestsUnitaires();
       InitialiserSurfaceDeJeu(20,10);
+			testfonction();
     }
 
     private void InitialiserSurfaceDeJeu(int nbLignes, int nbCols)
@@ -79,6 +80,7 @@ namespace TP3
     void ExecuterTestABC()
     {
       // Mise en place des données du test
+			
       
       // Exécuter de la méthode à tester
       
@@ -86,6 +88,14 @@ namespace TP3
       
       // Clean-up
     }
+
+		int testfonction()
+		{
+			int nombre1 = 1;
+			int nombre2 = 2;
+
+			return nombre1 * nombre2;
+		}
 
     #endregion
 
