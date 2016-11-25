@@ -4,9 +4,9 @@ using System.Windows.Forms;
 
 namespace TP3
 {
-  public partial class FormPrincipale : Form
+  public partial class Form1 : Form
   {
-    public FormPrincipale( )
+    public Form1( )
     {
       InitializeComponent( );
     }
@@ -27,7 +27,6 @@ namespace TP3
       // Ne pas oublier de mettre en place les valeurs nécessaires à une partie.
       ExecuterTestsUnitaires();
       InitialiserSurfaceDeJeu(20,10);
-            ChangerPictureBoxCouleur();
     }
 
     private void InitialiserSurfaceDeJeu(int nbLignes, int nbCols)
@@ -87,13 +86,8 @@ namespace TP3
       
       // Clean-up
     }
-        void ChangerPictureBoxCouleur()
-        {
-            toutesImagesVisuelles[1, 1].BackColor = Color.Red;
-        }
 
     #endregion
-
 
   }
 
