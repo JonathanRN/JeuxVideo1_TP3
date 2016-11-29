@@ -97,6 +97,27 @@
   <ItemGroup>
     <None Include="Resources\img_player2_winner.bmp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Carré.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\J.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\L.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Ligne.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\S.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\T.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Z.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
