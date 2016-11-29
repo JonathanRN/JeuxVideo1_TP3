@@ -45,6 +45,7 @@ namespace TP3
       // Ne pas oublier de mettre en place les valeurs nécessaires à une partie.
       ExecuterTestsUnitaires();
       InitialiserSurfaceDeJeu(20,10);
+			AfficherBlocActif(CreeNouveauBlocActif());
     }
 
     private void InitialiserSurfaceDeJeu(int nbLignes, int nbCols)
@@ -91,7 +92,7 @@ namespace TP3
     #region Code à développer
 		TypeBloc CreeNouveauBlocActif()
 		{
-			Random rnd = new Random(420);
+			Random rnd = new Random();
 			int random = 0;
 			random = rnd.Next(2, 8);
 			
@@ -115,14 +116,14 @@ namespace TP3
 			{
 				// Positions Y
 				blocActifY[0] = 0;
-				blocActifY[1] = 0;
-				blocActifY[2] = 1;
-				blocActifY[3] = 1;
+				blocActifY[1] = 1;
+				blocActifY[2] = 2;
+				blocActifY[3] = 3;
 				//Positions X
 				blocActifX[0] = 1;
-				blocActifX[1] = 2;
+				blocActifX[1] = 1;
 				blocActifX[2] = 1;
-				blocActifX[3] = 2;
+				blocActifX[3] = 1;
 				return TypeBloc.Ligne;
 			}
 			// T
@@ -130,12 +131,12 @@ namespace TP3
 			{
 				// Positions Y
 				blocActifY[0] = 0;
-				blocActifY[1] = 0;
+				blocActifY[1] = 1;
 				blocActifY[2] = 1;
 				blocActifY[3] = 1;
 				//Positions X
 				blocActifX[0] = 1;
-				blocActifX[1] = 2;
+				blocActifX[1] = 0;
 				blocActifX[2] = 1;
 				blocActifX[3] = 2;
 				return TypeBloc.T;
@@ -146,11 +147,11 @@ namespace TP3
 				// Positions Y
 				blocActifY[0] = 0;
 				blocActifY[1] = 1;
-				blocActifY[2] = 1;
-				blocActifY[3] = 1;
+				blocActifY[2] = 2;
+				blocActifY[3] = 2;
 				//Positions X
 				blocActifX[0] = 1;
-				blocActifX[1] = 2;
+				blocActifX[1] = 1;
 				blocActifX[2] = 1;
 				blocActifX[3] = 2;
 				return TypeBloc.L;
@@ -186,7 +187,7 @@ namespace TP3
 				return TypeBloc.S;
 			}
 			// Z
-			else if (random == 8)
+			else  
 			{
 				// Positions Y
 				blocActifY[0] = 0;
@@ -200,6 +201,7 @@ namespace TP3
 				blocActifX[3] = 2;
 				return TypeBloc.Z;
 			}
+			
 		}
 		void AfficherBlocActif(TypeBloc blocActif)
 		{
