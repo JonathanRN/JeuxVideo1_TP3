@@ -8,7 +8,7 @@ namespace TP3
 	{
     #region Propriétés /  variables partagées par toutes les méthodes.
     //Position du bloc de rotation
-    static int colonneCourante = 0;
+    static int colonneCourante = 3;
     static int ligneCourante = 0;
     //Position relative du bloc actif selon le bloc de rotation
     static int[] blocActifX = new int[4] { 0, 0, 0, 0 };
@@ -101,7 +101,7 @@ namespace TP3
 			// Carré
 			if (random == 2)
 			{
-				// Positions Y
+				//Positions Y
 				blocActifY[0] = 0;
 				blocActifY[1] = 0;
 				blocActifY[2] = 1;
@@ -249,67 +249,62 @@ namespace TP3
 				blocActifX[3] = -1 * temporaire[3];
 			}
 		}
-
+		/// <summary>
+		/// Fait par Kevin
+		/// </summary>
+		/// <param name="blocActif"></param>
 		void AfficherBlocActif(TypeBloc blocActif)
 		{
 			if (blocActif == TypeBloc.Carré)
 			{
-				toutesImagesVisuelles[ligneCourante + blocActifY[0], colonneCourante + blocActifX[0]].BackgroundImage = Properties.Resources.Carré;
-				toutesImagesVisuelles[ligneCourante + blocActifY[1], colonneCourante + blocActifX[1]].BackgroundImage = Properties.Resources.Carré;
-				toutesImagesVisuelles[ligneCourante + blocActifY[2], colonneCourante + blocActifX[2]].BackgroundImage = Properties.Resources.Carré;
-				toutesImagesVisuelles[ligneCourante + blocActifY[3], colonneCourante + blocActifX[3]].BackgroundImage = Properties.Resources.Carré;
+				ChangerImageAffichage(Properties.Resources.Carré);
 			}
 			if (blocActif == TypeBloc.Ligne)
 			{
-				toutesImagesVisuelles[ligneCourante + blocActifY[0], colonneCourante + blocActifX[0]].BackgroundImage = Properties.Resources.Ligne;
-				toutesImagesVisuelles[ligneCourante + blocActifY[1], colonneCourante + blocActifX[1]].BackgroundImage = Properties.Resources.Ligne;
-				toutesImagesVisuelles[ligneCourante + blocActifY[2], colonneCourante + blocActifX[2]].BackgroundImage = Properties.Resources.Ligne;
-				toutesImagesVisuelles[ligneCourante + blocActifY[3], colonneCourante + blocActifX[3]].BackgroundImage = Properties.Resources.Ligne;
+				ChangerImageAffichage(Properties.Resources.Ligne);
 			}
 			if (blocActif == TypeBloc.J)
 			{
-				toutesImagesVisuelles[ligneCourante + blocActifY[0], colonneCourante + blocActifX[0]].BackgroundImage = Properties.Resources.J;
-				toutesImagesVisuelles[ligneCourante + blocActifY[1], colonneCourante + blocActifX[1]].BackgroundImage = Properties.Resources.J;
-				toutesImagesVisuelles[ligneCourante + blocActifY[2], colonneCourante + blocActifX[2]].BackgroundImage = Properties.Resources.J;
-				toutesImagesVisuelles[ligneCourante + blocActifY[3], colonneCourante + blocActifX[3]].BackgroundImage = Properties.Resources.J;
+				ChangerImageAffichage(Properties.Resources.J);
 			}
 			if (blocActif == TypeBloc.L)
 			{
-				toutesImagesVisuelles[ligneCourante + blocActifY[0], colonneCourante + blocActifX[0]].BackgroundImage = Properties.Resources.L;
-				toutesImagesVisuelles[ligneCourante + blocActifY[1], colonneCourante + blocActifX[1]].BackgroundImage = Properties.Resources.L;
-				toutesImagesVisuelles[ligneCourante + blocActifY[2], colonneCourante + blocActifX[2]].BackgroundImage = Properties.Resources.L;
-				toutesImagesVisuelles[ligneCourante + blocActifY[3], colonneCourante + blocActifX[3]].BackgroundImage = Properties.Resources.L;
+				ChangerImageAffichage(Properties.Resources.L);
 			}
 			if (blocActif == TypeBloc.S)
 			{
-				toutesImagesVisuelles[ligneCourante + blocActifY[0], colonneCourante + blocActifX[0]].BackgroundImage = Properties.Resources.S;
-				toutesImagesVisuelles[ligneCourante + blocActifY[1], colonneCourante + blocActifX[1]].BackgroundImage = Properties.Resources.S;
-				toutesImagesVisuelles[ligneCourante + blocActifY[2], colonneCourante + blocActifX[2]].BackgroundImage = Properties.Resources.S;
-				toutesImagesVisuelles[ligneCourante + blocActifY[3], colonneCourante + blocActifX[3]].BackgroundImage = Properties.Resources.S;
+				ChangerImageAffichage(Properties.Resources.S);
 			}
 			if (blocActif == TypeBloc.T)
 			{
-				toutesImagesVisuelles[ligneCourante + blocActifY[0], colonneCourante + blocActifX[0]].BackgroundImage = Properties.Resources.T;
-				toutesImagesVisuelles[ligneCourante + blocActifY[1], colonneCourante + blocActifX[1]].BackgroundImage = Properties.Resources.T;
-				toutesImagesVisuelles[ligneCourante + blocActifY[2], colonneCourante + blocActifX[2]].BackgroundImage = Properties.Resources.T;
-				toutesImagesVisuelles[ligneCourante + blocActifY[3], colonneCourante + blocActifX[3]].BackgroundImage = Properties.Resources.T;
+				ChangerImageAffichage(Properties.Resources.T);
 			}
 			if (blocActif == TypeBloc.Z)
 			{
-				toutesImagesVisuelles[ligneCourante + blocActifY[0], colonneCourante + blocActifX[0]].BackgroundImage = Properties.Resources.Z;
-				toutesImagesVisuelles[ligneCourante + blocActifY[1], colonneCourante + blocActifX[1]].BackgroundImage = Properties.Resources.Z;
-				toutesImagesVisuelles[ligneCourante + blocActifY[2], colonneCourante + blocActifX[2]].BackgroundImage = Properties.Resources.Z;
-				toutesImagesVisuelles[ligneCourante + blocActifY[3], colonneCourante + blocActifX[3]].BackgroundImage = Properties.Resources.Z;
+				ChangerImageAffichage(Properties.Resources.Z);
 			}
+		
 
 
 
 		}
+		/// <summary>
+		/// Fait par Kevin
+		/// </summary>
+		/// <param name="bloc"></param>
+		void ChangerImageAffichage(Bitmap bloc)
+		{
+			toutesImagesVisuelles[ligneCourante + blocActifY[0], colonneCourante + blocActifX[0]].BackgroundImage = bloc;
+			toutesImagesVisuelles[ligneCourante + blocActifY[1], colonneCourante + blocActifX[1]].BackgroundImage = bloc;
+			toutesImagesVisuelles[ligneCourante + blocActifY[2], colonneCourante + blocActifX[2]].BackgroundImage = bloc;
+			toutesImagesVisuelles[ligneCourante + blocActifY[3], colonneCourante + blocActifX[3]].BackgroundImage = bloc;
+		}
+	
 
-    /// <summary>
-    /// Faites ici les appels requis pour vos tests unitaires.
-    /// </summary>
-    void ExecuterTestsUnitaires()
+		/// <summary>
+		/// Faites ici les appels requis pour vos tests unitaires.
+		/// </summary>
+		void ExecuterTestsUnitaires()
     {      
       ExecuterTestABC();
       // A compléter...
