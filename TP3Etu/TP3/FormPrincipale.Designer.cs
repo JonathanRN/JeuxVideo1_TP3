@@ -36,6 +36,7 @@
 			// 
 			// tableauJeu
 			// 
+			this.tableauJeu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
 			this.tableauJeu.ColumnCount = 20;
 			this.tableauJeu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.63538F));
 			this.tableauJeu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 7.220217F));
