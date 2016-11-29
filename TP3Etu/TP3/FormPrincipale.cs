@@ -6,16 +6,13 @@ namespace TP3
 {
 	public partial class FormPrincipale : Form
 	{
-        #region Propriétés /  variables partagées par toutes les méthodes.
-        //Position du bloc de rotation
-        static int colonneCourante = 0;
-        static int ligneCourante = 0;
-        //Position relative du bloc actif selon le bloc de rotation
-        static int[] blocActifX = new int[4] { 0, 0, 0, 0 };
-        static int[] blocActifY = new int[4] { 0, 0, 0, 0 };
-        //Nombre de colonnes dans le jeu
-        int nbColonnesJeu = 10;
-		#region Propriétés /  variables partagées par toutes les méthodes.
+    #region Propriétés /  variables partagées par toutes les méthodes.
+    //Position du bloc de rotation
+    static int colonneCourante = 0;
+    static int ligneCourante = 0;
+    //Position relative du bloc actif selon le bloc de rotation
+    static int[] blocActifX = new int[4] { 0, 0, 0, 0 };
+    static int[] blocActifY = new int[4] { 0, 0, 0, 0 };
 		//Nombre de colonnes dans le jeu
 		static int nbColonnesJeu = 10;
 		//Nombre de lignes dans le jeu
