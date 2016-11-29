@@ -312,7 +312,7 @@ namespace TP3
 		/// <param name="blocActif"></param>
 		void AfficherBlocActif(TypeBloc blocActif)
 		{
-           
+            
 			if (blocActif == TypeBloc.Carré)
 			{
 				ChangerImageAffichage(Properties.Resources.Carré);
@@ -417,6 +417,7 @@ namespace TP3
 
 		private void timerBlocDescente_Tick(object sender, EventArgs e)
 		{
+            ChangerImageAffichage(Properties.Resources.justedunoir);
 			DeplacerBloc(TouchesJoueur.DéplacerBas);
 			AfficherBlocActif(blocCourant);
 		}
