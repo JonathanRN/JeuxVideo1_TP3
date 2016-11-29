@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Windows.Input;
 
 namespace TP3
 {
@@ -51,6 +52,7 @@ namespace TP3
 			while (tourEstTermine == false)
 			{
 				AfficherBlocActif(blocCourant);
+				ToucheEntreeParJoueur();
 				tourEstTermine = true;
 			}
     }
@@ -97,6 +99,21 @@ namespace TP3
     #endregion
 
     #region Code à développer
+		TouchesJoueur ToucheEntreeParJoueur()
+		{
+			TouchesJoueur toucheSaisie;
+			Keys keyPress;
+			if (keyPress == Keys.Up)
+			{
+				toucheSaisie = TouchesJoueur.DéplacerBas;
+			}
+			else
+			{
+				toucheSaisie = TouchesJoueur.DéplacerGauche;
+			}
+			return toucheSaisie;
+		}
+
 		/// <summary>
 		/// Fait par Jo
 		/// </summary>
@@ -339,6 +356,11 @@ namespace TP3
 			toutesImagesVisuelles[ligneCourante + blocActifY[2], colonneCourante + blocActifX[2]].BackgroundImage = bloc;
 			toutesImagesVisuelles[ligneCourante + blocActifY[3], colonneCourante + blocActifX[3]].BackgroundImage = bloc;
 		}
+
+		/// <summary>
+		/// Fait par Kevin
+		/// </summary>
+		/// <param name="deplacement"></param>
 		void DeplacerBloc(TouchesJoueur deplacement)
 		{
 			if (deplacement == TouchesJoueur.DéplacerDroit)

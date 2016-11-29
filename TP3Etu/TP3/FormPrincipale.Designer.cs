@@ -29,9 +29,9 @@
     private void InitializeComponent( )
     {
 			this.tableauJeu = new System.Windows.Forms.TableLayoutPanel();
-			this.gbSuivant = new System.Windows.Forms.GroupBox();
 			this.lblTextScore = new System.Windows.Forms.Label();
 			this.lblScore = new System.Windows.Forms.Label();
+			this.gbSuivant = new System.Windows.Forms.GroupBox();
 			this.SuspendLayout();
 			// 
 			// tableauJeu
@@ -95,15 +95,6 @@
 			this.tableauJeu.Size = new System.Drawing.Size(222, 441);
 			this.tableauJeu.TabIndex = 1;
 			// 
-			// gbSuivant
-			// 
-			this.gbSuivant.Location = new System.Drawing.Point(240, 33);
-			this.gbSuivant.Name = "gbSuivant";
-			this.gbSuivant.Size = new System.Drawing.Size(200, 110);
-			this.gbSuivant.TabIndex = 2;
-			this.gbSuivant.TabStop = false;
-			this.gbSuivant.Text = "Pièce suivante";
-			// 
 			// lblTextScore
 			// 
 			this.lblTextScore.AutoSize = true;
@@ -121,6 +112,15 @@
 			this.lblScore.Size = new System.Drawing.Size(13, 13);
 			this.lblScore.TabIndex = 4;
 			this.lblScore.Text = "0";
+			// 
+			// gbSuivant
+			// 
+			this.gbSuivant.Location = new System.Drawing.Point(240, 33);
+			this.gbSuivant.Name = "gbSuivant";
+			this.gbSuivant.Size = new System.Drawing.Size(200, 110);
+			this.gbSuivant.TabIndex = 2;
+			this.gbSuivant.TabStop = false;
+			this.gbSuivant.Text = "Pièce suivante";
 			// 
 			// FormPrincipale
 			// 

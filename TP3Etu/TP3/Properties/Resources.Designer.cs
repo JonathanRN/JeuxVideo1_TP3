@@ -83,6 +83,16 @@ namespace TP3.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap justedunoir {
+            get {
+                object obj = ResourceManager.GetObject("justedunoir", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap L {
             get {
                 object obj = ResourceManager.GetObject("L", resourceCulture);
