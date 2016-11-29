@@ -100,6 +100,61 @@ namespace TP3
 				
 			}
 		}
+		void AfficherBlocActif(TypeBloc blocActif)
+		{
+			if (blocActif == TypeBloc.Carré)
+			{
+				toutesImagesVisuelles[ligneCourante + blocActifX[0], colonneCourante + blocActifY[0]].BackColor = Color.Red;
+				toutesImagesVisuelles[ligneCourante + blocActifX[1], colonneCourante + blocActifY[1]].BackColor = Color.Red;
+				toutesImagesVisuelles[ligneCourante + blocActifX[2], colonneCourante + blocActifY[2]].BackColor = Color.Red;
+				toutesImagesVisuelles[ligneCourante + blocActifX[3], colonneCourante + blocActifY[3]].BackColor = Color.Red;
+			}
+			if (blocActif == TypeBloc.Ligne)
+			{
+				toutesImagesVisuelles[ligneCourante + blocActifX[0], colonneCourante + blocActifY[0]].BackColor = Color.Red;
+				toutesImagesVisuelles[ligneCourante + blocActifX[1], colonneCourante + blocActifY[1]].BackColor = Color.Red;
+				toutesImagesVisuelles[ligneCourante + blocActifX[2], colonneCourante + blocActifY[2]].BackColor = Color.Red;
+				toutesImagesVisuelles[ligneCourante + blocActifX[3], colonneCourante + blocActifY[3]].BackColor = Color.Red;
+			}
+			if (blocActif == TypeBloc.J)
+			{
+				toutesImagesVisuelles[ligneCourante + blocActifX[0], colonneCourante + blocActifY[0]].BackColor = Color.Red;
+				toutesImagesVisuelles[ligneCourante + blocActifX[1], colonneCourante + blocActifY[1]].BackColor = Color.Red;
+				toutesImagesVisuelles[ligneCourante + blocActifX[2], colonneCourante + blocActifY[2]].BackColor = Color.Red;
+				toutesImagesVisuelles[ligneCourante + blocActifX[3], colonneCourante + blocActifY[3]].BackColor = Color.Red;
+			}
+			if (blocActif == TypeBloc.L)
+			{
+				toutesImagesVisuelles[ligneCourante + blocActifX[0], colonneCourante + blocActifY[0]].BackColor = Color.Red;
+				toutesImagesVisuelles[ligneCourante + blocActifX[1], colonneCourante + blocActifY[1]].BackColor = Color.Red;
+				toutesImagesVisuelles[ligneCourante + blocActifX[2], colonneCourante + blocActifY[2]].BackColor = Color.Red;
+				toutesImagesVisuelles[ligneCourante + blocActifX[3], colonneCourante + blocActifY[3]].BackColor = Color.Red;
+			}
+			if (blocActif == TypeBloc.S)
+			{
+				toutesImagesVisuelles[ligneCourante + blocActifX[0], colonneCourante + blocActifY[0]].BackColor = Color.Red;
+				toutesImagesVisuelles[ligneCourante + blocActifX[1], colonneCourante + blocActifY[1]].BackColor = Color.Red;
+				toutesImagesVisuelles[ligneCourante + blocActifX[2], colonneCourante + blocActifY[2]].BackColor = Color.Red;
+				toutesImagesVisuelles[ligneCourante + blocActifX[3], colonneCourante + blocActifY[3]].BackColor = Color.Red;
+			}
+			if (blocActif == TypeBloc.T)
+			{
+				toutesImagesVisuelles[ligneCourante + blocActifX[0], colonneCourante + blocActifY[0]].BackColor = Color.Red;
+				toutesImagesVisuelles[ligneCourante + blocActifX[1], colonneCourante + blocActifY[1]].BackColor = Color.Red;
+				toutesImagesVisuelles[ligneCourante + blocActifX[2], colonneCourante + blocActifY[2]].BackColor = Color.Red;
+				toutesImagesVisuelles[ligneCourante + blocActifX[3], colonneCourante + blocActifY[3]].BackColor = Color.Red;
+			}
+			if (blocActif == TypeBloc.Z)
+			{
+				toutesImagesVisuelles[ligneCourante + blocActifX[0], colonneCourante + blocActifY[0]].BackColor = Color.Red;
+				toutesImagesVisuelles[ligneCourante + blocActifX[1], colonneCourante + blocActifY[1]].BackColor = Color.Red;
+				toutesImagesVisuelles[ligneCourante + blocActifX[2], colonneCourante + blocActifY[2]].BackColor = Color.Red;
+				toutesImagesVisuelles[ligneCourante + blocActifX[3], colonneCourante + blocActifY[3]].BackColor = Color.Red;
+			}
+
+
+
+		}
 
 
 
