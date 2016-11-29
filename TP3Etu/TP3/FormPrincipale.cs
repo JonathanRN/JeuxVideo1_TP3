@@ -299,6 +299,31 @@ namespace TP3
 			toutesImagesVisuelles[ligneCourante + blocActifY[2], colonneCourante + blocActifX[2]].BackgroundImage = bloc;
 			toutesImagesVisuelles[ligneCourante + blocActifY[3], colonneCourante + blocActifX[3]].BackgroundImage = bloc;
 		}
+		void DeplacerBloc(TouchesJoueur deplacement)
+		{
+			if (deplacement == TouchesJoueur.DéplacerDroit)
+			{
+				colonneCourante++;
+			}
+			if (deplacement == TouchesJoueur.DéplacerGauche)
+			{
+				colonneCourante--;
+			}
+			if (deplacement == TouchesJoueur.DéplacerBas)
+			{
+				ligneCourante++;
+			}
+			if (deplacement == TouchesJoueur.RotationAntiHoraire)
+			{
+				RotationBlocs(TouchesJoueur.RotationAntiHoraire);
+			}
+			if (deplacement == TouchesJoueur.RotationHoraire)
+			{
+				RotationBlocs(TouchesJoueur.RotationHoraire);
+			}
+
+
+		}
 	
 
 		/// <summary>
