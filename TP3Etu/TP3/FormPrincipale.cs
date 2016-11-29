@@ -17,8 +17,6 @@ namespace TP3
 		static int nbColonnesJeu = 10;
 		//Nombre de lignes dans le jeu
 		static int nbLignesJeu = 20;
-		//Énumération des différents types de blocs dans le jeu
-		enum TypeBloc { None, Gelé, Carré, Ligne, T, L, J, S, Z };
 
 		TypeBloc[,] tableauDeJeu = new TypeBloc[nbLignesJeu, nbColonnesJeu];
 		#endregion
@@ -160,15 +158,15 @@ namespace TP3
 			else if (random == 6)
 			{
 				// Positions Y
-				blocActifY[0] = 1;
-				blocActifY[1] = 2;
-				blocActifY[2] = 3;
-				blocActifY[3] = 3;
+				blocActifY[0] = 0;
+				blocActifY[1] = 1;
+				blocActifY[2] = 2;
+				blocActifY[3] = 2;
 				//Positions X
-				blocActifX[0] = 2;
-				blocActifX[1] = 2;
-				blocActifX[2] = 2;
-				blocActifX[3] = 1;
+				blocActifX[0] = 1;
+				blocActifX[1] = 1;
+				blocActifX[2] = 1;
+				blocActifX[3] = 0;
 				return TypeBloc.J;
 			}
 			// S
@@ -190,19 +188,20 @@ namespace TP3
 			else  
 			{
 				// Positions Y
-				blocActifY[0] = 1;
-				blocActifY[1] = 2;
-				blocActifY[2] = 2;
-				blocActifY[3] = 3;
+				blocActifY[0] = 0;
+				blocActifY[1] = 1;
+				blocActifY[2] = 1;
+				blocActifY[3] = 2;
 				//Positions X
-				blocActifX[0] = 2;
-				blocActifX[1] = 2;
-				blocActifX[2] = 1;
-				blocActifX[3] = 1;
+				blocActifX[0] = 1;
+				blocActifX[1] = 1;
+				blocActifX[2] = 0;
+				blocActifX[3] = 0;
 				return TypeBloc.Z;
 			}
 			
 		}
+
 		void AfficherBlocActif(TypeBloc blocActif)
 		{
 			if (blocActif == TypeBloc.Carré)
