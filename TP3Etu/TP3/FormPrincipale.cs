@@ -89,15 +89,116 @@ namespace TP3
     #endregion
 
     #region Code à développer
-		void CreeNouveauBlocActif()
+		TypeBloc CreeNouveauBlocActif()
 		{
 			Random rnd = new Random(420);
 			int random = 0;
 			random = rnd.Next(2, 8);
-
+			
+			// Carré
 			if (random == 2)
 			{
-				
+				// Positions Y
+				blocActifY[0] = 0;
+				blocActifY[1] = 0;
+				blocActifY[2] = 1;
+				blocActifY[3] = 1;
+				//Positions X
+				blocActifX[0] = 1;
+				blocActifX[1] = 2;
+				blocActifX[2] = 1;
+				blocActifX[3] = 2;
+				return TypeBloc.Carré;
+			}
+			// Ligne
+			else if (random == 3)
+			{
+				// Positions Y
+				blocActifY[0] = 0;
+				blocActifY[1] = 0;
+				blocActifY[2] = 1;
+				blocActifY[3] = 1;
+				//Positions X
+				blocActifX[0] = 1;
+				blocActifX[1] = 2;
+				blocActifX[2] = 1;
+				blocActifX[3] = 2;
+				return TypeBloc.Ligne;
+			}
+			// T
+			else if (random == 4)
+			{
+				// Positions Y
+				blocActifY[0] = 0;
+				blocActifY[1] = 0;
+				blocActifY[2] = 1;
+				blocActifY[3] = 1;
+				//Positions X
+				blocActifX[0] = 1;
+				blocActifX[1] = 2;
+				blocActifX[2] = 1;
+				blocActifX[3] = 2;
+				return TypeBloc.T;
+			}
+			// L
+			else if (random == 5)
+			{
+				// Positions Y
+				blocActifY[0] = 0;
+				blocActifY[1] = 1;
+				blocActifY[2] = 1;
+				blocActifY[3] = 1;
+				//Positions X
+				blocActifX[0] = 1;
+				blocActifX[1] = 2;
+				blocActifX[2] = 1;
+				blocActifX[3] = 2;
+				return TypeBloc.L;
+			}
+			// J
+			else if (random == 6)
+			{
+				// Positions Y
+				blocActifY[0] = 0;
+				blocActifY[1] = 0;
+				blocActifY[2] = 1;
+				blocActifY[3] = 1;
+				//Positions X
+				blocActifX[0] = 1;
+				blocActifX[1] = 2;
+				blocActifX[2] = 1;
+				blocActifX[3] = 2;
+				return TypeBloc.J;
+			}
+			// S
+			else if (random == 7)
+			{
+				// Positions Y
+				blocActifY[0] = 0;
+				blocActifY[1] = 0;
+				blocActifY[2] = 1;
+				blocActifY[3] = 1;
+				//Positions X
+				blocActifX[0] = 1;
+				blocActifX[1] = 2;
+				blocActifX[2] = 1;
+				blocActifX[3] = 2;
+				return TypeBloc.S;
+			}
+			// Z
+			else if (random == 8)
+			{
+				// Positions Y
+				blocActifY[0] = 0;
+				blocActifY[1] = 0;
+				blocActifY[2] = 1;
+				blocActifY[3] = 1;
+				//Positions X
+				blocActifX[0] = 1;
+				blocActifX[1] = 2;
+				blocActifX[2] = 1;
+				blocActifX[3] = 2;
+				return TypeBloc.Z;
 			}
 		}
 		void AfficherBlocActif(TypeBloc blocActif)
