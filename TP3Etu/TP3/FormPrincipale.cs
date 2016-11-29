@@ -17,6 +17,8 @@ namespace TP3
 		static int nbColonnesJeu = 10;
 		//Nombre de lignes dans le jeu
 		static int nbLignesJeu = 20;
+		// Initialisation du bloc courant
+		TypeBloc blocCourant = TypeBloc.None;
 
 		TypeBloc[,] tableauDeJeu = new TypeBloc[nbLignesJeu, nbColonnesJeu];
 		#endregion
@@ -40,10 +42,17 @@ namespace TP3
     /// <param name="e"></param>
     private void frmLoad( object sender, EventArgs e )
     {
-      // Ne pas oublier de mettre en place les valeurs nécessaires à une partie.
+			bool tourEstTermine = false;
+			// Ne pas oublier de mettre en place les valeurs nécessaires à une partie.
       ExecuterTestsUnitaires();
-      InitialiserSurfaceDeJeu(20,10);
-			AfficherBlocActif(CreeNouveauBlocActif());
+			InitialiserSurfaceDeJeu(20, 10);
+			blocCourant = ChoisirBlocAleatoire();
+			CreeNouveauBlocActif(blocCourant);
+			while (tourEstTermine == false)
+			{
+				AfficherBlocActif(blocCourant);
+				tourEstTermine = true;
+			}
     }
 
     private void InitialiserSurfaceDeJeu(int nbLignes, int nbCols)
@@ -92,14 +101,50 @@ namespace TP3
 		/// Fait par Jo
 		/// </summary>
 		/// <returns></returns>
-		TypeBloc CreeNouveauBlocActif()
+		TypeBloc ChoisirBlocAleatoire()
 		{
 			Random rnd = new Random();
-			int random = 0;
-			random = rnd.Next(2, 8);
-			
+			int randomBloc;
+			randomBloc = rnd.Next(2, 8);
+
+			if (randomBloc == 2)
+			{
+				return TypeBloc.Carré;
+			}
+			else if (randomBloc == 3)
+			{
+				return TypeBloc.Ligne;
+			}
+			else if (randomBloc == 3)
+			{
+				return TypeBloc.T;
+			}
+			else if (randomBloc == 4)
+			{
+				return TypeBloc.L;
+			}
+			else if (randomBloc == 5)
+			{
+				return TypeBloc.J;
+			}
+			else if (randomBloc == 6)
+			{
+				return TypeBloc.S;
+			}
+			else
+			{
+				return TypeBloc.Z;
+			}
+		}
+
+		/// <summary>
+		/// Fait par Jo
+		/// </summary>
+		/// <returns></returns>
+		void CreeNouveauBlocActif(TypeBloc bloc)
+		{			
 			// Carré
-			if (random == 2)
+			if (bloc == TypeBloc.Carré)
 			{
 				//Positions Y
 				blocActifY[0] = 0;
@@ -111,10 +156,9 @@ namespace TP3
 				blocActifX[1] = 2;
 				blocActifX[2] = 1;
 				blocActifX[3] = 2;
-				return TypeBloc.Carré;
 			}
 			// Ligne
-			else if (random == 3)
+			else if (bloc == TypeBloc.Ligne)
 			{
 				// Positions Y
 				blocActifY[0] = 0;
@@ -126,10 +170,9 @@ namespace TP3
 				blocActifX[1] = 1;
 				blocActifX[2] = 1;
 				blocActifX[3] = 1;
-				return TypeBloc.Ligne;
 			}
 			// T
-			else if (random == 4)
+			else if (bloc == TypeBloc.T)
 			{
 				// Positions Y
 				blocActifY[0] = 0;
@@ -141,10 +184,9 @@ namespace TP3
 				blocActifX[1] = 0;
 				blocActifX[2] = 1;
 				blocActifX[3] = 2;
-				return TypeBloc.T;
 			}
 			// L
-			else if (random == 5)
+			else if (bloc == TypeBloc.L)
 			{
 				// Positions Y
 				blocActifY[0] = 0;
@@ -156,10 +198,9 @@ namespace TP3
 				blocActifX[1] = 1;
 				blocActifX[2] = 1;
 				blocActifX[3] = 2;
-				return TypeBloc.L;
 			}
 			// J
-			else if (random == 6)
+			else if (bloc == TypeBloc.J)
 			{
 				// Positions Y
 				blocActifY[0] = 0;
@@ -171,10 +212,9 @@ namespace TP3
 				blocActifX[1] = 1;
 				blocActifX[2] = 1;
 				blocActifX[3] = 0;
-				return TypeBloc.J;
 			}
 			// S
-			else if (random == 7)
+			else if (bloc == TypeBloc.S)
 			{
 				// Positions Y
 				blocActifY[0] = 0;
@@ -186,7 +226,6 @@ namespace TP3
 				blocActifX[1] = 1;
 				blocActifX[2] = 2;
 				blocActifX[3] = 2;
-				return TypeBloc.S;
 			}
 			// Z
 			else  
@@ -201,7 +240,6 @@ namespace TP3
 				blocActifX[1] = 1;
 				blocActifX[2] = 0;
 				blocActifX[3] = 0;
-				return TypeBloc.Z;
 			}			
 		}
 
@@ -209,10 +247,10 @@ namespace TP3
 		/// Fait par Jo
 		/// </summary>
 		/// <param name="rotationPiece"></param>
-		void RotationBlocs(TouchesJoueur rotationPiece)
+		void RotationBlocs(TouchesJoueur rotationBlocs)
 		{
 			int[] temporaire = new int[blocActifX.Length];
-			if (rotationPiece == TouchesJoueur.RotationAntiHoraire)
+			if (rotationBlocs == TouchesJoueur.RotationAntiHoraire)
 			{
 				//Rotation de 90 degrés Antihoraire
 				temporaire[0] = blocActifY[0];
@@ -230,7 +268,7 @@ namespace TP3
 				blocActifX[2] = temporaire[2];
 				blocActifX[3] = temporaire[3];
 			}
-			if (rotationPiece == TouchesJoueur.RotationHoraire)
+			if (rotationBlocs == TouchesJoueur.RotationHoraire)
 			{
 				//Rotation de 90 degrés horaire
 				temporaire[0] = blocActifY[0];
@@ -249,6 +287,7 @@ namespace TP3
 				blocActifX[3] = -1 * temporaire[3];
 			}
 		}
+
 		/// <summary>
 		/// Fait par Kevin
 		/// </summary>
@@ -288,6 +327,7 @@ namespace TP3
 
 
 		}
+
 		/// <summary>
 		/// Fait par Kevin
 		/// </summary>
