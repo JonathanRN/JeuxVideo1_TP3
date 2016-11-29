@@ -29,6 +29,9 @@
     private void InitializeComponent( )
     {
 			this.tableauJeu = new System.Windows.Forms.TableLayoutPanel();
+			this.gbSuivant = new System.Windows.Forms.GroupBox();
+			this.lblTextScore = new System.Windows.Forms.Label();
+			this.lblScore = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
 			// tableauJeu
@@ -53,8 +56,8 @@
 			this.tableauJeu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
 			this.tableauJeu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
 			this.tableauJeu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-			this.tableauJeu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 31F));
-			this.tableauJeu.Location = new System.Drawing.Point(173, 42);
+			this.tableauJeu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 41F));
+			this.tableauJeu.Location = new System.Drawing.Point(9, 33);
 			this.tableauJeu.Margin = new System.Windows.Forms.Padding(0);
 			this.tableauJeu.Name = "tableauJeu";
 			this.tableauJeu.RowCount = 30;
@@ -91,11 +94,41 @@
 			this.tableauJeu.Size = new System.Drawing.Size(222, 441);
 			this.tableauJeu.TabIndex = 1;
 			// 
+			// gbSuivant
+			// 
+			this.gbSuivant.Location = new System.Drawing.Point(240, 33);
+			this.gbSuivant.Name = "gbSuivant";
+			this.gbSuivant.Size = new System.Drawing.Size(200, 110);
+			this.gbSuivant.TabIndex = 2;
+			this.gbSuivant.TabStop = false;
+			this.gbSuivant.Text = "Pièce suivante";
+			// 
+			// lblTextScore
+			// 
+			this.lblTextScore.AutoSize = true;
+			this.lblTextScore.Location = new System.Drawing.Point(237, 174);
+			this.lblTextScore.Name = "lblTextScore";
+			this.lblTextScore.Size = new System.Drawing.Size(41, 13);
+			this.lblTextScore.TabIndex = 3;
+			this.lblTextScore.Text = "Score :";
+			// 
+			// lblScore
+			// 
+			this.lblScore.AutoSize = true;
+			this.lblScore.Location = new System.Drawing.Point(284, 174);
+			this.lblScore.Name = "lblScore";
+			this.lblScore.Size = new System.Drawing.Size(13, 13);
+			this.lblScore.TabIndex = 4;
+			this.lblScore.Text = "0";
+			// 
 			// FormPrincipale
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(578, 589);
+			this.ClientSize = new System.Drawing.Size(452, 483);
+			this.Controls.Add(this.lblScore);
+			this.Controls.Add(this.lblTextScore);
+			this.Controls.Add(this.gbSuivant);
 			this.Controls.Add(this.tableauJeu);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.KeyPreview = true;
@@ -104,12 +137,16 @@
 			this.Text = "Titris";
 			this.Load += new System.EventHandler(this.frmLoad);
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
     }
 
     #endregion
 
     private System.Windows.Forms.TableLayoutPanel tableauJeu;
-  }
+		private System.Windows.Forms.GroupBox gbSuivant;
+		private System.Windows.Forms.Label lblTextScore;
+		private System.Windows.Forms.Label lblScore;
+	}
 }
 

@@ -8,16 +8,13 @@ namespace TP3
 	{
 		#region Propriétés /  variables partagées par toutes les méthodes.
 		//Nombre de colonnes dans le jeu
-		int nbColonnesJeu = 10;
+		static int nbColonnesJeu = 10;
 		//Nombre de lignes dans le jeu
-		int nbLignesJeu = 20;
+		static int nbLignesJeu = 20;
 		//Énumération des différents types de blocs dans le jeu
 		enum TypeBloc { None, Gelé, Carré, Ligne, T, L, J, S, Z };
 
-		//TypeBloc[,] tableauDeJeu = new TypeBloc[nbLignesJeu, 20];
-
-		//Initialisation du tableau de jeu
-
+		TypeBloc[,] tableauDeJeu = new TypeBloc[nbLignesJeu, nbColonnesJeu];
 		#endregion
 
 		public FormPrincipale( )
@@ -28,7 +25,7 @@ namespace TP3
     #region Code fourni
     
     // Représentation visuelles du jeu en mémoire.
-     PictureBox[,] toutesImagesVisuelles = null;
+    static PictureBox[,] toutesImagesVisuelles = null;
         
     
     /// <summary>
@@ -42,7 +39,6 @@ namespace TP3
       // Ne pas oublier de mettre en place les valeurs nécessaires à une partie.
       ExecuterTestsUnitaires();
       InitialiserSurfaceDeJeu(20,10);
-
     }
 
     private void InitialiserSurfaceDeJeu(int nbLignes, int nbCols)
@@ -74,10 +70,33 @@ namespace TP3
           tableauJeu.Controls.Add(newPictureBox, j, i);
         }
       }
+
+			// Initialisation du tableau
+			for (int i = 0; i < nbLignesJeu; i++)
+			{
+				for (int j = 0; j < nbColonnesJeu; j++)
+				{
+					tableauDeJeu[i, j] = TypeBloc.None;
+				}
+			}
     }
     #endregion
 
     #region Code à développer
+		void CreeNouveauBlocActif()
+		{
+			Random rnd = new Random(420);
+			int random = 0;
+			random = rnd.Next(2, 8);
+
+			if (random == 2)
+			{
+				
+			}
+		}
+
+
+
     /// <summary>
     /// Faites ici les appels requis pour vos tests unitaires.
     /// </summary>
