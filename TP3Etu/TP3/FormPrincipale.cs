@@ -53,7 +53,6 @@ namespace TP3
 			while (tourEstTermine == false)
 			{
 				AfficherBlocActif(blocCourant);
-				//ToucheEntreeParJoueur();
 				tourEstTermine = true;
 			}
     }
@@ -97,23 +96,66 @@ namespace TP3
 				}
 			}
     }
-    #endregion
+		#endregion
 
-    #region Code à développer
-		//TouchesJoueur ToucheEntreeParJoueur()
-		//{
-		//	TouchesJoueur toucheSaisie;
-		//	Keys keyPress;
-		//	//if (keyPress == Keys.Up)
-		//	{
-		//		toucheSaisie = TouchesJoueur.DéplacerBas;
-		//	}
-		//	else
-		//	{
-		//		toucheSaisie = TouchesJoueur.DéplacerGauche;
-		//	}
-		//	return toucheSaisie;
-		//}
+		#region Code à développer
+		/// <summary>
+		/// Fait par Kevin et Jo
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void FormPrincipale_KeyPress(object sender, KeyPressEventArgs e)
+		{
+			// Bas
+			if (e.KeyChar == (char)Keys.S)
+			{
+				ChangerImageAffichage(Properties.Resources.justedunoir);
+				DeplacerBloc(TouchesJoueur.DéplacerBas);
+				AfficherBlocActif(blocCourant);
+			}
+			// Gauche
+			else if (e.KeyChar == (char)Keys.A)
+			{
+				ChangerImageAffichage(Properties.Resources.justedunoir);
+				DeplacerBloc(TouchesJoueur.DéplacerGauche);
+				AfficherBlocActif(blocCourant);
+			}
+			// Droite
+			else if (e.KeyChar == (char)Keys.D)
+			{
+				ChangerImageAffichage(Properties.Resources.justedunoir);
+				DeplacerBloc(TouchesJoueur.DéplacerDroit);
+				AfficherBlocActif(blocCourant);
+			}
+			// Hold
+			else if (e.KeyChar == (char)Keys.O)
+			{
+				ChangerImageAffichage(Properties.Resources.justedunoir);
+				DeplacerBloc(TouchesJoueur.DéplacerHold);
+				AfficherBlocActif(blocCourant);
+			}
+			// Sauter
+			else if (e.KeyChar == (char)Keys.Space)
+			{
+				ChangerImageAffichage(Properties.Resources.justedunoir);
+				DeplacerBloc(TouchesJoueur.HardDrop);
+				AfficherBlocActif(blocCourant);
+			}
+			// Rotation antihoraire
+			else if (e.KeyChar == (char)Keys.K)
+			{
+				ChangerImageAffichage(Properties.Resources.justedunoir);
+				DeplacerBloc(TouchesJoueur.RotationAntiHoraire);
+				AfficherBlocActif(blocCourant);
+			}
+			// Rotation Horaire
+			else if (e.KeyChar == (char)Keys.L)
+			{
+				ChangerImageAffichage(Properties.Resources.justedunoir);
+				DeplacerBloc(TouchesJoueur.RotationHoraire);
+				AfficherBlocActif(blocCourant);
+			}
+		}
 
 		/// <summary>
 		/// Fait par Jo
@@ -311,8 +353,7 @@ namespace TP3
 		/// </summary>
 		/// <param name="blocActif"></param>
 		void AfficherBlocActif(TypeBloc blocActif)
-		{
-           
+		{     
 			if (blocActif == TypeBloc.Carré)
 			{
 				ChangerImageAffichage(Properties.Resources.Carré);
@@ -358,7 +399,7 @@ namespace TP3
 			toutesImagesVisuelles[ligneCourante + blocActifY[2], colonneCourante + blocActifX[2]].BackgroundImage = bloc;
 			toutesImagesVisuelles[ligneCourante + blocActifY[3], colonneCourante + blocActifX[3]].BackgroundImage = bloc;
 		}
-
+			
 		/// <summary>
 		/// Fait par Kevin
 		/// </summary>
@@ -412,13 +453,12 @@ namespace TP3
       // Clean-up
     }
 
-
-		#endregion
-
 		private void timerBlocDescente_Tick(object sender, EventArgs e)
 		{
+			ChangerImageAffichage(Properties.Resources.justedunoir);
 			DeplacerBloc(TouchesJoueur.DéplacerBas);
 			AfficherBlocActif(blocCourant);
 		}
+		#endregion
 	}
 }
