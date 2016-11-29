@@ -88,6 +88,10 @@ namespace TP3
     #endregion
 
     #region Code à développer
+		/// <summary>
+		/// Fait par Jo
+		/// </summary>
+		/// <returns></returns>
 		TypeBloc CreeNouveauBlocActif()
 		{
 			Random rnd = new Random();
@@ -198,8 +202,52 @@ namespace TP3
 				blocActifX[2] = 0;
 				blocActifX[3] = 0;
 				return TypeBloc.Z;
+			}			
+		}
+
+		/// <summary>
+		/// Fait par Jo
+		/// </summary>
+		/// <param name="rotationPiece"></param>
+		void RotationBlocs(TouchesJoueur rotationPiece)
+		{
+			int[] temporaire = new int[blocActifX.Length];
+			if (rotationPiece == TouchesJoueur.RotationAntiHoraire)
+			{
+				//Rotation de 90 degrés Antihoraire
+				temporaire[0] = blocActifY[0];
+				temporaire[1] = blocActifY[1];
+				temporaire[2] = blocActifY[2];
+				temporaire[3] = blocActifY[3];
+
+				blocActifY[0] = -1 * blocActifX[0];
+				blocActifY[1] = -1 * blocActifX[1];
+				blocActifY[2] = -1 * blocActifX[2];
+				blocActifY[3] = -1 * blocActifX[3];
+
+				blocActifX[0] = temporaire[0];
+				blocActifX[1] = temporaire[1];
+				blocActifX[2] = temporaire[2];
+				blocActifX[3] = temporaire[3];
 			}
-			
+			if (rotationPiece == TouchesJoueur.RotationHoraire)
+			{
+				//Rotation de 90 degrés horaire
+				temporaire[0] = blocActifY[0];
+				temporaire[1] = blocActifY[1];
+				temporaire[2] = blocActifY[2];
+				temporaire[3] = blocActifY[3];
+
+				blocActifY[0] = blocActifX[0];
+				blocActifY[1] = blocActifX[1];
+				blocActifY[2] = blocActifX[2];
+				blocActifY[3] = blocActifX[3];
+
+				blocActifX[0] = -1 * temporaire[0];
+				blocActifX[1] = -1 * temporaire[1];
+				blocActifX[2] = -1 * temporaire[2];
+				blocActifX[3] = -1 * temporaire[3];
+			}
 		}
 
 		void AfficherBlocActif(TypeBloc blocActif)
