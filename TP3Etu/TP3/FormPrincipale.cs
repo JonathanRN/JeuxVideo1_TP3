@@ -48,6 +48,7 @@ namespace TP3
 			InitialiserSurfaceDeJeu(20, 10);
 			blocCourant = ChoisirBlocAleatoire();
 			CreeNouveauBlocActif(blocCourant);
+			timerBlocDescente.Enabled = true;
 			while (tourEstTermine == false)
 			{
 				AfficherBlocActif(blocCourant);
@@ -294,6 +295,7 @@ namespace TP3
 		/// <param name="blocActif"></param>
 		void AfficherBlocActif(TypeBloc blocActif)
 		{
+           
 			if (blocActif == TypeBloc.Carré)
 			{
 				ChangerImageAffichage(Properties.Resources.Carré);
@@ -389,6 +391,12 @@ namespace TP3
     }
 
 
-    #endregion
-  }
+		#endregion
+
+		private void timerBlocDescente_Tick(object sender, EventArgs e)
+		{
+			DeplacerBloc(TouchesJoueur.DéplacerBas);
+			AfficherBlocActif(blocCourant);
+		}
+	}
 }

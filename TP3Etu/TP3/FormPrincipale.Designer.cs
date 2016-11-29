@@ -28,10 +28,12 @@
     /// </summary>
     private void InitializeComponent( )
     {
+			this.components = new System.ComponentModel.Container();
 			this.tableauJeu = new System.Windows.Forms.TableLayoutPanel();
 			this.gbSuivant = new System.Windows.Forms.GroupBox();
 			this.lblTextScore = new System.Windows.Forms.Label();
 			this.lblScore = new System.Windows.Forms.Label();
+			this.timerBlocDescente = new System.Windows.Forms.Timer(this.components);
 			this.SuspendLayout();
 			// 
 			// tableauJeu
@@ -122,6 +124,11 @@
 			this.lblScore.TabIndex = 4;
 			this.lblScore.Text = "0";
 			// 
+			// timerBlocDescente
+			// 
+			this.timerBlocDescente.Interval = 1000;
+			this.timerBlocDescente.Tick += new System.EventHandler(this.timerBlocDescente_Tick);
+			// 
 			// FormPrincipale
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -148,6 +155,7 @@
 		private System.Windows.Forms.GroupBox gbSuivant;
 		private System.Windows.Forms.Label lblTextScore;
 		private System.Windows.Forms.Label lblScore;
+		private System.Windows.Forms.Timer timerBlocDescente;
 	}
 }
 
