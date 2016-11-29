@@ -4,8 +4,8 @@ using System.Windows.Forms;
 
 namespace TP3
 {
-  public partial class FormPrincipale : Form
-  {
+	public partial class FormPrincipale : Form
+	{
 		#region Propriétés /  variables partagées par toutes les méthodes.
 		//Nombre de colonnes dans le jeu
 		int nbColonnesJeu = 10;
@@ -14,7 +14,7 @@ namespace TP3
 		//Énumération des différents types de blocs dans le jeu
 		enum TypeBloc { None, Gelé, Carré, Ligne, T, L, J, S, Z };
 
-		TypeBloc[,] tableauDeJeu = new TypeBloc[nbLignesJeu, 20];
+		//TypeBloc[,] tableauDeJeu = new TypeBloc[nbLignesJeu, 20];
 
 		//Initialisation du tableau de jeu
 
@@ -25,7 +25,6 @@ namespace TP3
       InitializeComponent( );
     }
       
-
     #region Code fourni
     
     // Représentation visuelles du jeu en mémoire.
