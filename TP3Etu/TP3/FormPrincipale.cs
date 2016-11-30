@@ -111,14 +111,14 @@ namespace TP3
 
 		#region Code à développer
 		/// <summary>
-		/// Fait par Kevin et Jo
+		/// Fait par Jo
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
-		private void FormPrincipale_KeyPress(object sender, KeyPressEventArgs e)
+		protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
 		{
 			// Bas
-			if (e.KeyChar == (char)Keys.S)
+			if (keyData == Keys.Down)
 			{
                 if (BlocPeutBouger(TouchesJoueur.DéplacerBas) == true)
                 {
@@ -128,47 +128,48 @@ namespace TP3
 				AfficherBlocActif(blocCourant);
 			}
 			// Gauche
-			else if (e.KeyChar == (char)Keys.A)
+			else if (keyData == Keys.Left)
 			{
 				ChangerImageAffichage(Properties.Resources.justedunoir);
 				DeplacerBloc(TouchesJoueur.DéplacerGauche);
 				AfficherBlocActif(blocCourant);
 			}
 			// Droite
-			else if (e.KeyChar == (char)Keys.D)
+			else if (keyData == Keys.Right)
 			{
 				ChangerImageAffichage(Properties.Resources.justedunoir);
 				DeplacerBloc(TouchesJoueur.DéplacerDroit);
 				AfficherBlocActif(blocCourant);
 			}
 			// Hold
-			else if (e.KeyChar == (char)Keys.O)
+			else if (keyData == Keys.C)
 			{
 				ChangerImageAffichage(Properties.Resources.justedunoir);
 				DeplacerBloc(TouchesJoueur.DéplacerHold);
 				AfficherBlocActif(blocCourant);
 			}
-			// Sauter
-			else if (e.KeyChar == (char)Keys.Space)
+			// Drop
+			else if (keyData == Keys.Space)
 			{
 				ChangerImageAffichage(Properties.Resources.justedunoir);
 				DeplacerBloc(TouchesJoueur.HardDrop);
 				AfficherBlocActif(blocCourant);
 			}
 			// Rotation antihoraire
-			else if (e.KeyChar == (char)Keys.K)
+			else if (keyData == Keys.Z)
 			{
 				ChangerImageAffichage(Properties.Resources.justedunoir);
 				DeplacerBloc(TouchesJoueur.RotationAntiHoraire);
 				AfficherBlocActif(blocCourant);
 			}
 			// Rotation Horaire
-			else if (e.KeyChar == (char)Keys.L)
+			else if (keyData == Keys.X)
 			{
 				ChangerImageAffichage(Properties.Resources.justedunoir);
 				DeplacerBloc(TouchesJoueur.RotationHoraire);
 				AfficherBlocActif(blocCourant);
 			}
+			return base.ProcessCmdKey(ref msg, keyData);
 		}
 
 		/// <summary>
@@ -425,7 +426,7 @@ namespace TP3
 
 
 		/// <summary>
-		/// Fait par Kevin
+		/// Fait par Kevin et Jo
 		/// </summary>
 		/// <param name="deplacement"></param>
 		void DeplacerBloc(TouchesJoueur deplacement)
@@ -459,21 +460,27 @@ namespace TP3
 			}
 			if (deplacement == TouchesJoueur.RotationAntiHoraire)
 			{
-                RotationBlocs(TouchesJoueur.RotationAntiHoraire);
-                if (BlocPeutBouger(TouchesJoueur.RotationAntiHoraire) == false)
-                {
-                    RotationBlocs(TouchesJoueur.RotationHoraire);
-                }
+        RotationBlocs(TouchesJoueur.RotationAntiHoraire);
+        if (BlocPeutBouger(TouchesJoueur.RotationAntiHoraire) == false)
+        {
+            RotationBlocs(TouchesJoueur.RotationHoraire);
+        }
                
 			}
 			if (deplacement == TouchesJoueur.RotationHoraire)
 			{
-                RotationBlocs(TouchesJoueur.RotationHoraire);
-                if (BlocPeutBouger(TouchesJoueur.RotationHoraire) == false)
-                {
-                    RotationBlocs(TouchesJoueur.RotationAntiHoraire);
-                }
-               
+        RotationBlocs(TouchesJoueur.RotationHoraire);
+        if (BlocPeutBouger(TouchesJoueur.RotationHoraire) == false)
+        {
+            RotationBlocs(TouchesJoueur.RotationAntiHoraire);
+        } 
+			}
+			if (deplacement == TouchesJoueur.HardDrop)
+			{
+				for (int i = 0; i < nbLignesJeu; i++)
+				{
+					ligneCourante = i - (blocActifY.Max());
+				}
 			}
 		}
 

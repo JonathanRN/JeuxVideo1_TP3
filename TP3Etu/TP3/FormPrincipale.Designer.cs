@@ -144,7 +144,6 @@
 			this.Name = "FormPrincipale";
 			this.Text = "Titris";
 			this.Load += new System.EventHandler(this.frmLoad);
-			this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.FormPrincipale_KeyPress);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
