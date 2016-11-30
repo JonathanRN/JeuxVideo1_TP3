@@ -66,6 +66,7 @@ namespace TP3
             CreeNouveauBlocActif(blocCourant);
             timerBlocDescente.Enabled = true;
             AfficherBlocActif(blocCourant);
+            RetireerLignesCompletees();
         }
 
     private void InitialiserSurfaceDeJeu(int nbLignes, int nbCols)
@@ -171,6 +172,60 @@ namespace TP3
 			}
 			return base.ProcessCmdKey(ref msg, keyData);
 		}
+        int RetireerLignesCompletees()
+        {
+            int nbLigneComplete = 0;
+            bool ligneComplete;
+            for (int i = 0; i < nbLignesJeu; i++)
+            {
+                ligneComplete = EstUneLigneComplete(i);
+                if (ligneComplete == true)
+                {
+                    for (int j = 0; j < nbColonnesJeu ; j++)
+                    {
+                        tableauDeJeu[i, j] = TypeBloc.None;
+                        toutesImagesVisuelles[i, j].BackgroundImage = Properties.Resources.justedunoir; 
+                    }
+                    nbLigneComplete++;
+                }
+            }
+            for (int i = 0; i < nbLigneComplete; i++)
+            {
+                DecalerLigne(nbLignesJeu - nbLigneComplete);
+            }
+            return nbLigneComplete;
+        }
+        void DecalerLigne(int ligneDeDepart)
+        {
+            for (int  i= ligneDeDepart;  i > 0; i--)
+            {
+                for (int j = 0; j < tableauDeJeu.GetLength(1); j++)
+                {
+                    if (tableauDeJeu[i,j] == TypeBloc.Gelé)
+                    {
+                        tableauDeJeu[i + 1, j] = tableauDeJeu[i, j];
+                        tableauDeJeu[i, j] = TypeBloc.None;
+                        toutesImagesVisuelles[i + 1, j].BackgroundImage = toutesImagesVisuelles[i, j].BackgroundImage;
+                        toutesImagesVisuelles[i, j].BackgroundImage = Properties.Resources.justedunoir;    
+
+                    }
+                }
+
+            }
+
+        }
+        bool EstUneLigneComplete(int ligne)
+        {
+            bool ligneComplete = true;
+            for (int i = 0; i < tableauDeJeu.GetLength(1); i++)
+            {
+                if(tableauDeJeu[ligne,i] == TypeBloc.None)
+                {
+                    ligneComplete = false;
+                }
+            }
+            return ligneComplete;
+        }
 
 		/// <summary>
 		/// Fait par Jo
@@ -190,19 +245,19 @@ namespace TP3
 			{
 				return TypeBloc.Ligne;
 			}
-			else if (randomBloc == 3)
+			else if (randomBloc == 4)
 			{
 				return TypeBloc.T;
 			}
-			else if (randomBloc == 4)
+			else if (randomBloc == 5)
 			{
 				return TypeBloc.L;
 			}
-			else if (randomBloc == 5)
+			else if (randomBloc == 6)
 			{
 				return TypeBloc.J;
 			}
-			else if (randomBloc == 6)
+			else if (randomBloc == 7)
 			{
 				return TypeBloc.S;
 			}
@@ -483,6 +538,7 @@ namespace TP3
 				}
 			}
 		}
+
 
 		/// <summary>
 		/// Fait par Kevin
