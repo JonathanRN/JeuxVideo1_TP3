@@ -46,22 +46,27 @@ namespace TP3
     {
 			bool partieEstTerminee = false;
 			// Ne pas oublier de mettre en place les valeurs nécessaires à une partie.
-      ExecuterTestsUnitaires();
+            ExecuterTestsUnitaires();
 			InitialiserSurfaceDeJeu(20, 10);
-			while (partieEstTerminee == false)
-			{
-				if (ChangerBlocCourant() == true)
-				{
-
-				}
-				colonneCourante = 3;
-				ligneCourante = 0;
-				blocCourant = ChoisirBlocAleatoire();
-				CreeNouveauBlocActif(blocCourant);
-				timerBlocDescente.Enabled = true;
-				AfficherBlocActif(blocCourant);
-			}
+            InitialiserTour();
+			
+               
+             
+                
+               
+				
+            
+           
     }
+        void InitialiserTour()
+        {
+            colonneCourante = 3;
+            ligneCourante = 0;
+            blocCourant = ChoisirBlocAleatoire();
+            CreeNouveauBlocActif(blocCourant);
+            timerBlocDescente.Enabled = true;
+            AfficherBlocActif(blocCourant);
+        }
 
     private void InitialiserSurfaceDeJeu(int nbLignes, int nbCols)
     {
@@ -115,8 +120,11 @@ namespace TP3
 			// Bas
 			if (e.KeyChar == (char)Keys.S)
 			{
-				ChangerImageAffichage(Properties.Resources.justedunoir);
-				DeplacerBloc(TouchesJoueur.DéplacerBas);
+                if (BlocPeutBouger(TouchesJoueur.DéplacerBas) == true)
+                {
+                    ChangerImageAffichage(Properties.Resources.justedunoir);
+                }
+                DeplacerBloc(TouchesJoueur.DéplacerBas);
 				AfficherBlocActif(blocCourant);
 			}
 			// Gauche
@@ -428,6 +436,7 @@ namespace TP3
 				{
 					colonneCourante++;
 				}
+              
 			}
 			if (deplacement == TouchesJoueur.DéplacerGauche)
 			{
@@ -442,10 +451,11 @@ namespace TP3
 				{
 					ligneCourante++;
 				}
-				else
+				else 
 				{
-					ChangerBlocCourant();
-				}
+                    ChangerBlocCourant();
+                    InitialiserTour();
+                }
 			}
 			if (deplacement == TouchesJoueur.RotationAntiHoraire)
 			{
@@ -590,7 +600,10 @@ namespace TP3
 
 		private void timerBlocDescente_Tick(object sender, EventArgs e)
 		{
-			ChangerImageAffichage(Properties.Resources.justedunoir);
+            if (BlocPeutBouger(TouchesJoueur.DéplacerBas) == true)
+            {
+                ChangerImageAffichage(Properties.Resources.justedunoir);
+            }
 			DeplacerBloc(TouchesJoueur.DéplacerBas);
 			AfficherBlocActif(blocCourant);
 		}
