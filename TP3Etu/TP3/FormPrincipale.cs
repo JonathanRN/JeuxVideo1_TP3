@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 using System.Windows.Input;
 
@@ -288,7 +289,7 @@ namespace TP3
 				blocActifX[3] = 2;
 			}
 			// Z
-			else  
+			else
 			{
 				// Positions Y
 				blocActifY[0] = 0;
@@ -382,10 +383,6 @@ namespace TP3
 			{
 				ChangerImageAffichage(Properties.Resources.Z);
 			}
-		
-
-
-
 		}
 
 		/// <summary>
@@ -426,8 +423,6 @@ namespace TP3
 			{
 				RotationBlocs(TouchesJoueur.RotationHoraire);
 			}
-
-
 		}
 	
 
