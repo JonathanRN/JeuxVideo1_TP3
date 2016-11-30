@@ -44,17 +44,22 @@ namespace TP3
     /// <param name="e"></param>
     private void frmLoad( object sender, EventArgs e )
     {
-			bool tourEstTermine = false;
+			bool partieEstTerminee = false;
 			// Ne pas oublier de mettre en place les valeurs nécessaires à une partie.
       ExecuterTestsUnitaires();
 			InitialiserSurfaceDeJeu(20, 10);
-			blocCourant = ChoisirBlocAleatoire();
-			CreeNouveauBlocActif(blocCourant);
-			timerBlocDescente.Enabled = true;
-			while (tourEstTermine == false)
+			while (partieEstTerminee == false)
 			{
+				if (ChangerBlocCourant() == true)
+				{
+
+				}
+				colonneCourante = 3;
+				ligneCourante = 0;
+				blocCourant = ChoisirBlocAleatoire();
+				CreeNouveauBlocActif(blocCourant);
+				timerBlocDescente.Enabled = true;
 				AfficherBlocActif(blocCourant);
-				tourEstTermine = true;
 			}
     }
 
@@ -301,7 +306,7 @@ namespace TP3
 				blocActifX[1] = 1;
 				blocActifX[2] = 0;
 				blocActifX[3] = 0;
-			}			
+			}
 		}
 
 		/// <summary>
@@ -396,7 +401,21 @@ namespace TP3
 			toutesImagesVisuelles[ligneCourante + blocActifY[2], colonneCourante + blocActifX[2]].BackgroundImage = bloc;
 			toutesImagesVisuelles[ligneCourante + blocActifY[3], colonneCourante + blocActifX[3]].BackgroundImage = bloc;
 		}
-			
+
+		/// <summary>
+		/// Fait par Jo
+		/// </summary>
+		/// <param name="bloc"></param>
+		bool ChangerBlocCourant()
+		{
+			tableauDeJeu[ligneCourante + blocActifY[0], colonneCourante + blocActifX[0]] = TypeBloc.Gelé;
+			tableauDeJeu[ligneCourante + blocActifY[1], colonneCourante + blocActifX[1]] = TypeBloc.Gelé;
+			tableauDeJeu[ligneCourante + blocActifY[2], colonneCourante + blocActifX[2]] = TypeBloc.Gelé;
+			tableauDeJeu[ligneCourante + blocActifY[3], colonneCourante + blocActifX[3]] = TypeBloc.Gelé;
+			return true;
+		}
+
+
 		/// <summary>
 		/// Fait par Kevin
 		/// </summary>
@@ -405,43 +424,50 @@ namespace TP3
 		{
 			if (deplacement == TouchesJoueur.DéplacerDroit)
 			{
-                if (BlocPeutBouger(TouchesJoueur.DéplacerDroit) == true)
-                {
-                    colonneCourante++;
-                }
-				
+				if (BlocPeutBouger(TouchesJoueur.DéplacerDroit) == true)
+				{
+					colonneCourante++;
+				}
 			}
 			if (deplacement == TouchesJoueur.DéplacerGauche)
 			{
-                if (BlocPeutBouger(TouchesJoueur.DéplacerGauche) == true)
-                {
-                    colonneCourante--;
-                }
-            }
+				if (BlocPeutBouger(TouchesJoueur.DéplacerGauche) == true)
+				{
+					colonneCourante--;
+				}
+			}
 			if (deplacement == TouchesJoueur.DéplacerBas)
 			{
-                if (BlocPeutBouger(TouchesJoueur.DéplacerBas) == true)
-                {
-                    ligneCourante++;
-                }
-            }
+				if (BlocPeutBouger(TouchesJoueur.DéplacerBas) == true)
+				{
+					ligneCourante++;
+				}
+				else
+				{
+					ChangerBlocCourant();
+				}
+			}
 			if (deplacement == TouchesJoueur.RotationAntiHoraire)
 			{
-                if (BlocPeutBouger(TouchesJoueur.RotationAntiHoraire) == true)
-                {
-                    RotationBlocs(TouchesJoueur.RotationAntiHoraire);
-                }
-               
+				if (BlocPeutBouger(TouchesJoueur.RotationAntiHoraire) == true)
+				{
+					RotationBlocs(TouchesJoueur.RotationAntiHoraire);
+				}    
 			}
 			if (deplacement == TouchesJoueur.RotationHoraire)
 			{
-                if (BlocPeutBouger(TouchesJoueur.RotationHoraire) == true)
-                {
-                    RotationBlocs(TouchesJoueur.RotationHoraire);
-                }
-               
+				if (BlocPeutBouger(TouchesJoueur.RotationHoraire) == true)
+				{
+					RotationBlocs(TouchesJoueur.RotationHoraire);
+				}   
 			}
 		}
+
+		/// <summary>
+		/// Fait par Kevin
+		/// </summary>
+		/// <param name="deplacement"></param>
+		/// <returns></returns>
         bool BlocPeutBouger(TouchesJoueur deplacement)
         {
             bool peutBouger = true;
