@@ -405,25 +405,129 @@ namespace TP3
 		{
 			if (deplacement == TouchesJoueur.DéplacerDroit)
 			{
-				colonneCourante++;
+                if (BlocPeutBouger(TouchesJoueur.DéplacerDroit) == true)
+                {
+                    colonneCourante++;
+                }
+				
 			}
 			if (deplacement == TouchesJoueur.DéplacerGauche)
 			{
-				colonneCourante--;
-			}
+                if (BlocPeutBouger(TouchesJoueur.DéplacerGauche) == true)
+                {
+                    colonneCourante--;
+                }
+            }
 			if (deplacement == TouchesJoueur.DéplacerBas)
 			{
-				ligneCourante++;
-			}
+                if (BlocPeutBouger(TouchesJoueur.DéplacerBas) == true)
+                {
+                    ligneCourante++;
+                }
+            }
 			if (deplacement == TouchesJoueur.RotationAntiHoraire)
 			{
-				RotationBlocs(TouchesJoueur.RotationAntiHoraire);
+                if (BlocPeutBouger(TouchesJoueur.RotationAntiHoraire) == true)
+                {
+                    RotationBlocs(TouchesJoueur.RotationAntiHoraire);
+                }
+               
 			}
 			if (deplacement == TouchesJoueur.RotationHoraire)
 			{
-				RotationBlocs(TouchesJoueur.RotationHoraire);
+                if (BlocPeutBouger(TouchesJoueur.RotationHoraire) == true)
+                {
+                    RotationBlocs(TouchesJoueur.RotationHoraire);
+                }
+               
 			}
 		}
+        bool BlocPeutBouger(TouchesJoueur deplacement)
+        {
+            bool peutBouger = true;
+            if (deplacement == TouchesJoueur.DéplacerBas)
+            {
+                for (int i = 0; i < 4; i++)
+                {
+                    if (ligneCourante + blocActifY[i] + 1 < 20 )
+                    {
+                        peutBouger = true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+
+                }
+            }
+            if (deplacement == TouchesJoueur.DéplacerGauche)
+            {
+                for (int i = 0; i < 4; i++)
+                {
+                    if (colonneCourante + blocActifX[i] > 0)
+                    {
+                        peutBouger = true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+
+                }
+            }
+            if (deplacement == TouchesJoueur.DéplacerDroit)
+            {
+                for (int i = 0; i < 4; i++)
+                {
+                    if (colonneCourante + blocActifX[i] +1  < 10)
+                    {
+                        peutBouger = true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+
+                }
+            }
+            if (deplacement == TouchesJoueur.RotationAntiHoraire)
+            {
+                for (int i = 0; i < 4; i++)
+                {
+                    RotationBlocs(TouchesJoueur.RotationAntiHoraire);
+                    if (ligneCourante + blocActifY[i] < 20 && colonneCourante + blocActifX[i] < 10 && colonneCourante + blocActifX[i] > 0)
+                    {
+                        peutBouger = true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                    RotationBlocs(TouchesJoueur.RotationHoraire);
+                }
+            }
+            if (deplacement == TouchesJoueur.RotationHoraire)
+            {
+                for (int i = 0; i < 4; i++)
+                {
+                    RotationBlocs(TouchesJoueur.RotationHoraire);
+                    if (ligneCourante + blocActifY[i] < 20 && colonneCourante + blocActifX[i] < 10 && colonneCourante + blocActifX[i] > 0)
+                    {
+                        peutBouger = true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                    RotationBlocs(TouchesJoueur.RotationHoraire);
+
+                }
+            }
+
+
+
+            return peutBouger;
+        }
 	
 
 		/// <summary>
