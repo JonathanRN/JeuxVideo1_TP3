@@ -449,17 +449,21 @@ namespace TP3
 			}
 			if (deplacement == TouchesJoueur.RotationAntiHoraire)
 			{
-				if (BlocPeutBouger(TouchesJoueur.RotationAntiHoraire) == true)
-				{
-					RotationBlocs(TouchesJoueur.RotationAntiHoraire);
-				}    
+                RotationBlocs(TouchesJoueur.RotationAntiHoraire);
+                if (BlocPeutBouger(TouchesJoueur.RotationAntiHoraire) == false)
+                {
+                    RotationBlocs(TouchesJoueur.RotationHoraire);
+                }
+               
 			}
 			if (deplacement == TouchesJoueur.RotationHoraire)
 			{
-				if (BlocPeutBouger(TouchesJoueur.RotationHoraire) == true)
-				{
-					RotationBlocs(TouchesJoueur.RotationHoraire);
-				}   
+                RotationBlocs(TouchesJoueur.RotationHoraire);
+                if (BlocPeutBouger(TouchesJoueur.RotationHoraire) == false)
+                {
+                    RotationBlocs(TouchesJoueur.RotationAntiHoraire);
+                }
+               
 			}
 		}
 
@@ -475,7 +479,7 @@ namespace TP3
             {
                 for (int i = 0; i < 4; i++)
                 {
-                    if (ligneCourante + blocActifY[i] + 1 < 20 )
+                    if (ligneCourante + blocActifY[i] + 1 < nbLignesJeu && tableauDeJeu[ligneCourante+blocActifY[i] +1,colonneCourante + blocActifX[i]] == TypeBloc.None)
                     {
                         peutBouger = true;
                     }
@@ -490,7 +494,7 @@ namespace TP3
             {
                 for (int i = 0; i < 4; i++)
                 {
-                    if (colonneCourante + blocActifX[i] > 0)
+                    if (colonneCourante + blocActifX[i] > 0 && tableauDeJeu[ligneCourante + blocActifY[i], colonneCourante + blocActifX[i] -1] == TypeBloc.None)
                     {
                         peutBouger = true;
                     }
@@ -505,7 +509,7 @@ namespace TP3
             {
                 for (int i = 0; i < 4; i++)
                 {
-                    if (colonneCourante + blocActifX[i] +1  < 10)
+                    if (colonneCourante + blocActifX[i] +1  < nbColonnesJeu && tableauDeJeu[ligneCourante + blocActifY[i], colonneCourante + blocActifX[i]+1] == TypeBloc.None)
                     {
                         peutBouger = true;
                     }
@@ -518,34 +522,40 @@ namespace TP3
             }
             if (deplacement == TouchesJoueur.RotationAntiHoraire)
             {
+               
                 for (int i = 0; i < 4; i++)
                 {
-                    RotationBlocs(TouchesJoueur.RotationAntiHoraire);
-                    if (ligneCourante + blocActifY[i] < 20 && colonneCourante + blocActifX[i] < 10 && colonneCourante + blocActifX[i] > 0)
+                    
+                    if (ligneCourante + blocActifY[i] < nbLignesJeu && colonneCourante + blocActifX[i] < nbColonnesJeu && colonneCourante + blocActifX[i] > 0 && ligneCourante + blocActifY[i] > 0 && tableauDeJeu[ligneCourante + blocActifY[i], colonneCourante + blocActifX[i]] == TypeBloc.None)
                     {
                         peutBouger = true;
                     }
                     else
                     {
+                       
+
                         return false;
                     }
-                    RotationBlocs(TouchesJoueur.RotationHoraire);
+
                 }
             }
             if (deplacement == TouchesJoueur.RotationHoraire)
             {
+              
                 for (int i = 0; i < 4; i++)
                 {
-                    RotationBlocs(TouchesJoueur.RotationHoraire);
-                    if (ligneCourante + blocActifY[i] < 20 && colonneCourante + blocActifX[i] < 10 && colonneCourante + blocActifX[i] > 0)
+                    
+                    if (ligneCourante + blocActifY[i] < nbLignesJeu && colonneCourante + blocActifX[i] < nbColonnesJeu && colonneCourante + blocActifX[i] > 0 && ligneCourante + blocActifY[i] > 0 && tableauDeJeu[ligneCourante + blocActifY[i], colonneCourante + blocActifX[i]] == TypeBloc.None)
                     {
                         peutBouger = true;
                     }
                     else
                     {
+                       
+
                         return false;
                     }
-                    RotationBlocs(TouchesJoueur.RotationHoraire);
+                   
 
                 }
             }
