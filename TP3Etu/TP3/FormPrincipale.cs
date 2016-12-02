@@ -48,19 +48,25 @@ namespace TP3
     {
 			// Ne pas oublier de mettre en place les valeurs nécessaires à une partie.
 			ExecuterTestsUnitaires();
-			InitialiserSurfaceDeJeu(20, 10);
+			InitialiserSurfaceDeJeu(nbLignesJeu, nbColonnesJeu);
 			InitialiserTour();      
     }
-    void InitialiserTour()
-    {
-      colonneCourante = 3;
+        void InitialiserTour()
+        {
+      colonneCourante = nbColonnesJeu/2 - 1;
       ligneCourante = 1;
       blocCourant = ChoisirBlocAleatoire();
-			CreeNouveauBlocActif(blocCourant);
+      CreeNouveauBlocActif(blocCourant);
       timerBlocDescente.Enabled = true;
       AfficherBlocActif(blocCourant);
       score += AttribuerPoint( RetireerLignesCompletees());
       lblScore.Text = score.ToString();
+            blocCourant = ChoisirBlocAleatoire();
+            CreeNouveauBlocActif(blocCourant);
+            timerBlocDescente.Enabled = true;
+            AfficherBlocActif(blocCourant);
+            score += AttribuerPoint( RetireerLignesCompletees());
+            lblScore.Text = score.ToString();
 			GererPartieTerminee();
     }
 
@@ -80,6 +86,7 @@ namespace TP3
           // Création dynamique des PictureBox qui contiendront les pièces de jeu
           PictureBox newPictureBox = new PictureBox();
           newPictureBox.Width = tableauJeu.Width / tableauJeu.ColumnCount;
+                    newPictureBox.BackgroundImageLayout = ImageLayout.Stretch;
           newPictureBox.Height = tableauJeu.Height / tableauJeu.RowCount;
           newPictureBox.BackColor = Color.Black;
           newPictureBox.Margin = new Padding(0, 0, 0, 0);
