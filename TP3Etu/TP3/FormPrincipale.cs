@@ -172,50 +172,49 @@ namespace TP3
 			}
 			return base.ProcessCmdKey(ref msg, keyData);
 		}
-        int RetireerLignesCompletees()
-        {
-            int nbLigneComplete = 0;
-            bool ligneComplete;
-            for (int i = 0; i < nbLignesJeu; i++)
-            {
-                ligneComplete = EstUneLigneComplete(i);
-                if (ligneComplete == true)
-                {
-                    for (int j = 0; j < nbColonnesJeu ; j++)
-                    {
-                        tableauDeJeu[i, j] = TypeBloc.None;
-                        toutesImagesVisuelles[i, j].BackgroundImage = Properties.Resources.justedunoir; 
-                    }
-                    nbLigneComplete++;
-                }
-            }
-            for (int i = 0; i < nbLigneComplete; i++)
-            {
-                DecalerLigne(nbLignesJeu - nbLigneComplete);
-            }
-            return nbLigneComplete;
-        }
-        void DecalerLigne(int ligneDeDepart)
-        {
-            for (int  i= ligneDeDepart;  i > 0; i--)
-            {
-                for (int j = 0; j < tableauDeJeu.GetLength(1); j++)
-                {
-                    if (tableauDeJeu[i,j] == TypeBloc.Gelé)
-                    {
-                        tableauDeJeu[i + 1, j] = tableauDeJeu[i, j];
-                        tableauDeJeu[i, j] = TypeBloc.None;
-                        toutesImagesVisuelles[i + 1, j].BackgroundImage = toutesImagesVisuelles[i, j].BackgroundImage;
-                        toutesImagesVisuelles[i, j].BackgroundImage = Properties.Resources.justedunoir;    
+		int RetireerLignesCompletees()
+		{
+			int nbLigneComplete = 0;
+			bool ligneComplete;
+			for (int i = 0; i < nbLignesJeu; i++)
+			{
+				ligneComplete = EstUneLigneComplete(i);
+				if (ligneComplete == true)
+				{
+					for (int j = 0; j < nbColonnesJeu; j++)
+					{
+						tableauDeJeu[i, j] = TypeBloc.None;
+						toutesImagesVisuelles[i, j].BackgroundImage = Properties.Resources.justedunoir;
+					}
+					nbLigneComplete++;
+				}
+			}
+			for (int i = 0; i < nbLigneComplete; i++)
+			{
+				DecalerLigne(nbLignesJeu - 1 - nbLigneComplete);
+			}
+			return nbLigneComplete;
+		}
 
-                    }
-                }
+		void DecalerLigne(int ligneDeDepart)
+		{
+			for (int i = ligneDeDepart; i > 0; i--)
+			{
+				for (int j = 0; j < tableauDeJeu.GetLength(1); j++)
+				{
+					tableauDeJeu[i + 1, j] = tableauDeJeu[i, j];
+					tableauDeJeu[i, j] = TypeBloc.None;
+					toutesImagesVisuelles[i + 1, j].BackgroundImage = toutesImagesVisuelles[i, j].BackgroundImage;
+					toutesImagesVisuelles[i, j].BackgroundImage = Properties.Resources.justedunoir;
+					tableauDeJeu[0, j] = TypeBloc.None;
+				}
 
-            }
+			}
 
-        }
-        bool EstUneLigneComplete(int ligne)
-        {
+		}
+
+		bool EstUneLigneComplete(int ligne)
+    {
             bool ligneComplete = true;
             for (int i = 0; i < tableauDeJeu.GetLength(1); i++)
             {
@@ -277,10 +276,10 @@ namespace TP3
 			if (bloc == TypeBloc.Carré)
 			{
 				//Positions Y
-				blocActifY[0] = 0;
-				blocActifY[1] = 0;
-				blocActifY[2] = 1;
-				blocActifY[3] = 1;
+				blocActifY[0] = 1;
+				blocActifY[1] = 1;
+				blocActifY[2] = 2;
+				blocActifY[3] = 2;
 				//Positions X
 				blocActifX[0] = 1;
 				blocActifX[1] = 2;
@@ -532,9 +531,12 @@ namespace TP3
 			}
 			if (deplacement == TouchesJoueur.HardDrop)
 			{
-				for (int i = 0; i < nbLignesJeu; i++)
+				for (int i = 0; i < tableauDeJeu.GetLength(0); i++)
 				{
-					ligneCourante = i - (blocActifY.Max());
+					if (BlocPeutBouger(TouchesJoueur.DéplacerBas) == true)
+					{
+						ligneCourante++;
+					}
 				}
 			}
 		}
