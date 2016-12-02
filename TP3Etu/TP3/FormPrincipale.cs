@@ -23,6 +23,8 @@ namespace TP3
 		TypeBloc blocCourant = TypeBloc.None;
 
 		TypeBloc[,] tableauDeJeu = new TypeBloc[nbLignesJeu, nbColonnesJeu];
+        //Score
+        static int score = 0;
 		#endregion
 
 		public FormPrincipale( )
@@ -66,7 +68,8 @@ namespace TP3
             CreeNouveauBlocActif(blocCourant);
             timerBlocDescente.Enabled = true;
             AfficherBlocActif(blocCourant);
-            RetireerLignesCompletees();
+            score += AttribuerPoint( RetireerLignesCompletees());
+            lblScore.Text = score.ToString();
         }
 
     private void InitialiserSurfaceDeJeu(int nbLignes, int nbCols)
@@ -172,45 +175,70 @@ namespace TP3
 			}
 			return base.ProcessCmdKey(ref msg, keyData);
 		}
-		int RetireerLignesCompletees()
-		{
-			int nbLigneComplete = 0;
-			bool ligneComplete;
-			for (int i = 0; i < nbLignesJeu; i++)
-			{
-				ligneComplete = EstUneLigneComplete(i);
-				if (ligneComplete == true)
-				{
-					for (int j = 0; j < nbColonnesJeu; j++)
-					{
-						tableauDeJeu[i, j] = TypeBloc.None;
-						toutesImagesVisuelles[i, j].BackgroundImage = Properties.Resources.justedunoir;
-					}
-					nbLigneComplete++;
-				}
-			}
-			for (int i = 0; i < nbLigneComplete; i++)
-			{
-				DecalerLigne(nbLignesJeu - 1 - nbLigneComplete);
-			}
-			return nbLigneComplete;
-		}
+        int AttribuerPoint(int score)
+        {
+            if (score == 1)
+            {
+                return 1;
+            }
+            else if (score == 2)
+            {
+                return 5;
+            }
+            else if (score == 3)
+            {
+                return 10;
+            }
+            else if (score == 4)
+            {
+                return 20;
+            }
+            else
+            {
+                return score;
+            }
+        }
+        int RetireerLignesCompletees()
+        {
+            int nbLigneComplete = 0;
+            bool ligneComplete;
+            for (int i = nbLignesJeu-1; i > 0; i--)
+            {
+                ligneComplete = EstUneLigneComplete(i);
+                if (ligneComplete == true)
+                {
+                    DecalerLigne(i - 1);
+                    nbLigneComplete++;
+                    i++;
+                }
+            }
+            
 
-		void DecalerLigne(int ligneDeDepart)
-		{
-			for (int i = ligneDeDepart; i > 0; i--)
-			{
-				for (int j = 0; j < tableauDeJeu.GetLength(1); j++)
-				{
-					tableauDeJeu[i + 1, j] = tableauDeJeu[i, j];
-					tableauDeJeu[i, j] = TypeBloc.None;
-					toutesImagesVisuelles[i + 1, j].BackgroundImage = toutesImagesVisuelles[i, j].BackgroundImage;
-					toutesImagesVisuelles[i, j].BackgroundImage = Properties.Resources.justedunoir;
-					tableauDeJeu[0, j] = TypeBloc.None;
-				}
 
-			}
+               
+            
+            return nbLigneComplete;
+        }
+        void DecalerLigne(int ligneDeDepart)
+        {
+          
 
+                for (int i = ligneDeDepart; i > 0; i--)
+                {
+                    for (int j = 0; j < tableauDeJeu.GetLength(1); j++)
+                    {
+                       // if (tableauDeJeu[i, j] == TypeBloc.Gelé)
+                        {
+                            tableauDeJeu[i + 1, j] = tableauDeJeu[i, j];
+                            tableauDeJeu[i, j] = TypeBloc.None;
+                            toutesImagesVisuelles[i + 1, j].BackgroundImage = toutesImagesVisuelles[i, j].BackgroundImage;
+                            toutesImagesVisuelles[i, j].BackgroundImage = Properties.Resources.justedunoir;
+
+                        }
+                    }
+
+                }
+            
 		}
 
 		bool EstUneLigneComplete(int ligne)
@@ -234,7 +262,7 @@ namespace TP3
 		{
 			Random rnd = new Random();
 			int randomBloc;
-			randomBloc = rnd.Next(2, 8);
+			randomBloc = rnd.Next(2, 9);
 
 			if (randomBloc == 2)
 			{
