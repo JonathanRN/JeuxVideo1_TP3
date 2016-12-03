@@ -35,15 +35,17 @@
 			this.gbSuivant = new System.Windows.Forms.GroupBox();
 			this.timerBlocDescente = new System.Windows.Forms.Timer(this.components);
 			this.btnParametres = new System.Windows.Forms.Button();
-			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+			this.Menu = new System.Windows.Forms.MenuStrip();
 			this.jeuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.recommencerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
 			this.quitterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.paramètresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
 			this.statistiquesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.menuStrip1.SuspendLayout();
+			this.timerTemps = new System.Windows.Forms.Timer(this.components);
+			this.Menu.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// tableauJeu
@@ -149,16 +151,16 @@
 			this.btnParametres.UseVisualStyleBackColor = true;
 			this.btnParametres.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnParametres_MouseClick);
 			// 
-			// menuStrip1
+			// Menu
 			// 
-			this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+			this.Menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.jeuToolStripMenuItem,
             this.optionsToolStripMenuItem});
-			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-			this.menuStrip1.Name = "menuStrip1";
-			this.menuStrip1.Size = new System.Drawing.Size(452, 24);
-			this.menuStrip1.TabIndex = 6;
-			this.menuStrip1.Text = "menuStrip1";
+			this.Menu.Location = new System.Drawing.Point(0, 0);
+			this.Menu.Name = "Menu";
+			this.Menu.Size = new System.Drawing.Size(452, 24);
+			this.Menu.TabIndex = 6;
+			this.Menu.Text = "menuStrip1";
 			// 
 			// jeuToolStripMenuItem
 			// 
@@ -173,19 +175,19 @@
 			// recommencerToolStripMenuItem
 			// 
 			this.recommencerToolStripMenuItem.Name = "recommencerToolStripMenuItem";
-			this.recommencerToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.recommencerToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
 			this.recommencerToolStripMenuItem.Text = "Recommencer";
 			this.recommencerToolStripMenuItem.Click += new System.EventHandler(this.recommencerToolStripMenuItem_Click);
 			// 
 			// toolStripSeparator1
 			// 
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
-			this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+			this.toolStripSeparator1.Size = new System.Drawing.Size(148, 6);
 			// 
 			// quitterToolStripMenuItem
 			// 
 			this.quitterToolStripMenuItem.Name = "quitterToolStripMenuItem";
-			this.quitterToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.quitterToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
 			this.quitterToolStripMenuItem.Text = "Quitter";
 			this.quitterToolStripMenuItem.Click += new System.EventHandler(this.quitterToolStripMenuItem_Click);
 			// 
@@ -193,6 +195,7 @@
 			// 
 			this.optionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.paramètresToolStripMenuItem,
+            this.toolStripSeparator2,
             this.statistiquesToolStripMenuItem});
 			this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
 			this.optionsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
@@ -201,14 +204,24 @@
 			// paramètresToolStripMenuItem
 			// 
 			this.paramètresToolStripMenuItem.Name = "paramètresToolStripMenuItem";
-			this.paramètresToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.paramètresToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
 			this.paramètresToolStripMenuItem.Text = "Paramètres";
+			// 
+			// toolStripSeparator2
+			// 
+			this.toolStripSeparator2.Name = "toolStripSeparator2";
+			this.toolStripSeparator2.Size = new System.Drawing.Size(131, 6);
 			// 
 			// statistiquesToolStripMenuItem
 			// 
 			this.statistiquesToolStripMenuItem.Name = "statistiquesToolStripMenuItem";
-			this.statistiquesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.statistiquesToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
 			this.statistiquesToolStripMenuItem.Text = "Statistiques";
+			this.statistiquesToolStripMenuItem.Click += new System.EventHandler(this.statistiquesToolStripMenuItem_Click);
+			// 
+			// timerTemps
+			// 
+			this.timerTemps.Interval = 1000;
 			// 
 			// FormPrincipale
 			// 
@@ -220,16 +233,16 @@
 			this.Controls.Add(this.lblTextScore);
 			this.Controls.Add(this.gbSuivant);
 			this.Controls.Add(this.tableauJeu);
-			this.Controls.Add(this.menuStrip1);
+			this.Controls.Add(this.Menu);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.KeyPreview = true;
-			this.MainMenuStrip = this.menuStrip1;
+			this.MainMenuStrip = this.Menu;
 			this.MaximizeBox = false;
 			this.Name = "FormPrincipale";
 			this.Text = "Titris";
 			this.Load += new System.EventHandler(this.frmLoad);
-			this.menuStrip1.ResumeLayout(false);
-			this.menuStrip1.PerformLayout();
+			this.Menu.ResumeLayout(false);
+			this.Menu.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -241,9 +254,8 @@
 		private System.Windows.Forms.GroupBox gbSuivant;
 		private System.Windows.Forms.Label lblTextScore;
 		private System.Windows.Forms.Label lblScore;
-        private System.Windows.Forms.Timer timerBlocDescente;
         private System.Windows.Forms.Button btnParametres;
-		private System.Windows.Forms.MenuStrip menuStrip1;
+		private System.Windows.Forms.MenuStrip Menu;
 		private System.Windows.Forms.ToolStripMenuItem jeuToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem recommencerToolStripMenuItem;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
@@ -251,6 +263,9 @@
 		private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem paramètresToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem statistiquesToolStripMenuItem;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+		public System.Windows.Forms.Timer timerBlocDescente;
+		private System.Windows.Forms.Timer timerTemps;
 	}
 }
 

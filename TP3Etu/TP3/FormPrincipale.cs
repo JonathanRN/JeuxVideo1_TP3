@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -25,15 +26,15 @@ namespace TP3
 		TypeBloc blocCourant = TypeBloc.None;
 
 		TypeBloc[,] tableauDeJeu = new TypeBloc[nbLignesJeu, nbColonnesJeu];
-        //Score
-        static int score = 0;
+    //Score
+    public static int score = 0;
+		public static Stopwatch stopWatch = new Stopwatch();
 		#endregion
 
 		public FormPrincipale( )
     {
       InitializeComponent( );
-    }
-
+		}
     #region Code fourni
     
     // Représentation visuelles du jeu en mémoire.
@@ -51,18 +52,20 @@ namespace TP3
 			// Ne pas oublier de mettre en place les valeurs nécessaires à une partie.
 			ExecuterTestsUnitaires();
 			InitialiserSurfaceDeJeu(nbLignesJeu, nbColonnesJeu);
-			InitialiserTour();      
-    }
+			InitialiserTour();
+			// Timer
+			timerTemps.Enabled = true;
+			stopWatch.Start();
+		}
 
-      void InitialiserTour()
-      {
+    void InitialiserTour()
+    {
       colonneCourante = nbColonnesJeu/2 - 1;
       ligneCourante = 1;
       blocCourant = ChoisirBlocAleatoire();
       CreeNouveauBlocActif(blocCourant);
       timerBlocDescente.Enabled = true;
       AfficherBlocActif(blocCourant);
-			//CreePieceGhost();
       score += AttribuerPoint( RetireerLignesCompletees());
       lblScore.Text = score.ToString();
 			GererPartieTerminee();
@@ -100,7 +103,7 @@ namespace TP3
         }
       }
 
-			// Initialisation du tableau
+			// Initialisation du tableau de jeu
 			for (int i = 0; i < nbLignesJeu; i++)
 			{
 				for (int j = 0; j < nbColonnesJeu; j++)
@@ -108,7 +111,13 @@ namespace TP3
 					tableauDeJeu[i, j] = TypeBloc.None;
 				}
 			}
-    }
+
+			// Initialisation du tableau nombres de pieces de la frmStatistiques
+			for (int i = 0; i < frmStatistiques.nombrePieces.Length; i++)
+			{
+				frmStatistiques.nombrePieces[i] = 0;
+			}
+		}
 		#endregion
 
 		#region Code à développer
@@ -259,30 +268,37 @@ namespace TP3
 
 			if (randomBloc == 2)
 			{
+				frmStatistiques.nombrePieces[0]++;
 				return TypeBloc.Carré;
 			}
 			else if (randomBloc == 3)
 			{
+				frmStatistiques.nombrePieces[1]++;
 				return TypeBloc.Ligne;
 			}
 			else if (randomBloc == 4)
 			{
+				frmStatistiques.nombrePieces[2]++;
 				return TypeBloc.T;
 			}
 			else if (randomBloc == 5)
 			{
+				frmStatistiques.nombrePieces[3]++;
 				return TypeBloc.L;
 			}
 			else if (randomBloc == 6)
 			{
+				frmStatistiques.nombrePieces[4]++;
 				return TypeBloc.J;
 			}
 			else if (randomBloc == 7)
 			{
+				frmStatistiques.nombrePieces[5]++;
 				return TypeBloc.S;
 			}
 			else
 			{
+				frmStatistiques.nombrePieces[6]++;
 				return TypeBloc.Z;
 			}
 		}
@@ -682,14 +698,12 @@ namespace TP3
 			if (PartieEstTerminee() == true)
 			{
 				timerBlocDescente.Enabled = false;
-				DialogResult result = MessageBox.Show("La partie est terminée, voulez-vous rejouer ?", "Game over!", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk);
-				if (result == DialogResult.Yes)
+				frmStatistiques stats = new frmStatistiques();
+				stats.ShowDialog();
+				DialogResult resultat = frmStatistiques.resultat;
+				if (resultat == DialogResult.OK)
 				{
 					ReinitialiserJeu();
-				}
-				else
-				{
-					Application.Exit();
 				}
 			}
 		}
@@ -698,6 +712,12 @@ namespace TP3
 		{
 			lblScore.Text = "0";
 			score = 0;
+
+			// Tableau de nombre de pieces
+			for (int i = 0; i < frmStatistiques.nombrePieces.Length; i++)
+			{
+				frmStatistiques.nombrePieces[i] = 0;
+			}
 
 			// Tableau de jeu et picturesbox
 			for (int i = 0; i < nbLignesJeu; i++)
@@ -708,23 +728,14 @@ namespace TP3
 					toutesImagesVisuelles[i, j].BackgroundImage = Properties.Resources.justedunoir;
 				}
 			}
+
+			// Timer
+			timerTemps.Enabled = false;
+			timerTemps.Enabled = true;
+			stopWatch.Stop();
+			stopWatch.Start();
 			InitialiserTour();
 		}
-
-		void CreePieceGhost()
-		{
-			for (int i = 0; i < tableauDeJeu.GetLength(0); i++)
-			{
-				if (BlocPeutBouger(TouchesJoueur.DéplacerBas) == false)
-				{
-					toutesImagesVisuelles[nbLignesJeu - blocActifY[0], colonneCourante + blocActifX[0]].BackgroundImage = Properties.Resources.Ghost;
-					toutesImagesVisuelles[ligneCourante + blocActifY[1], colonneCourante + blocActifX[1]].BackgroundImage = Properties.Resources.Ghost;
-					toutesImagesVisuelles[ligneCourante + blocActifY[2], colonneCourante + blocActifX[2]].BackgroundImage = Properties.Resources.Ghost;
-					toutesImagesVisuelles[ligneCourante + blocActifY[3], colonneCourante + blocActifX[3]].BackgroundImage = Properties.Resources.Ghost;
-				}
-			}
-		}
-
 
 		/// <summary>
 		/// Faites ici les appels requis pour vos tests unitaires.
@@ -750,10 +761,10 @@ namespace TP3
 
 		private void timerBlocDescente_Tick(object sender, EventArgs e)
 		{
-            if (BlocPeutBouger(TouchesJoueur.DéplacerBas) == true)
-            {
-                ChangerImageAffichage(Properties.Resources.justedunoir);
-            }
+			if (BlocPeutBouger(TouchesJoueur.DéplacerBas) == true)
+			{
+					ChangerImageAffichage(Properties.Resources.justedunoir);
+			}
 			DeplacerBloc(TouchesJoueur.DéplacerBas);
 			AfficherBlocActif(blocCourant);
 		}
@@ -776,7 +787,7 @@ namespace TP3
       }
       if (resultat == DialogResult.Cancel)
       {
-          timerBlocDescente.Enabled = true;
+				timerBlocDescente.Enabled = true;
       }
     }
 
@@ -792,6 +803,18 @@ namespace TP3
 			if (result == DialogResult.Yes)
 			{
 				Application.Exit();
+			}
+		}
+
+		private void statistiquesToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			timerBlocDescente.Enabled = false;
+			frmStatistiques stats = new frmStatistiques();
+			stats.ShowDialog();
+			DialogResult resultat = frmStatistiques.resultat;
+			if (resultat == DialogResult.OK)
+			{
+				ReinitialiserJeu();
 			}
 		}
 		#endregion
