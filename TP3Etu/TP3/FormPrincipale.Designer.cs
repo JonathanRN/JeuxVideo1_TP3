@@ -175,6 +175,7 @@
 			this.recommencerToolStripMenuItem.Name = "recommencerToolStripMenuItem";
 			this.recommencerToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.recommencerToolStripMenuItem.Text = "Recommencer";
+			this.recommencerToolStripMenuItem.Click += new System.EventHandler(this.recommencerToolStripMenuItem_Click);
 			// 
 			// toolStripSeparator1
 			// 
@@ -186,6 +187,7 @@
 			this.quitterToolStripMenuItem.Name = "quitterToolStripMenuItem";
 			this.quitterToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.quitterToolStripMenuItem.Text = "Quitter";
+			this.quitterToolStripMenuItem.Click += new System.EventHandler(this.quitterToolStripMenuItem_Click);
 			// 
 			// optionsToolStripMenuItem
 			// 

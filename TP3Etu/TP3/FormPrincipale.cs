@@ -3,6 +3,8 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using System.Windows.Input;
+using WMPLib;
+
 
 namespace TP3
 {
@@ -31,7 +33,7 @@ namespace TP3
     {
       InitializeComponent( );
     }
-      
+
     #region Code fourni
     
     // Représentation visuelles du jeu en mémoire.
@@ -755,28 +757,43 @@ namespace TP3
 			DeplacerBloc(TouchesJoueur.DéplacerBas);
 			AfficherBlocActif(blocCourant);
 		}
-        #endregion
+		#endregion
 
-        private void btnParametres_MouseClick(object sender, MouseEventArgs e)
-        {
-            timerBlocDescente.Enabled = false;
-            frmParametre parametre = new frmParametre();
-            parametre.ShowDialog();
-            DialogResult resultat = frmParametre.resultat;
-            if (resultat == DialogResult.OK)
-            {
-                nbLignesJeu = frmParametre.nbLignes;
-                nbColonnesJeu = frmParametre.nbColonnes;
-                tableauDeJeu = new TypeBloc[nbLignesJeu, nbColonnesJeu];
-                InitialiserSurfaceDeJeu(nbLignesJeu, nbColonnesJeu);
-                ReinitialiserJeu();
-            }
-            if (resultat == DialogResult.Cancel)
-            {
-                timerBlocDescente.Enabled = true;
-            }
-
-
-        }
+		#region Boutons
+		private void btnParametres_MouseClick(object sender, MouseEventArgs e)
+    {
+      timerBlocDescente.Enabled = false;
+      frmParametre parametre = new frmParametre();
+      parametre.ShowDialog();
+      DialogResult resultat = frmParametre.resultat;
+      if (resultat == DialogResult.OK)
+      {
+				nbLignesJeu = frmParametre.nbLignes;
+				nbColonnesJeu = frmParametre.nbColonnes;
+				tableauDeJeu = new TypeBloc[nbLignesJeu, nbColonnesJeu];
+				InitialiserSurfaceDeJeu(nbLignesJeu, nbColonnesJeu);
+				ReinitialiserJeu();
+      }
+      if (resultat == DialogResult.Cancel)
+      {
+          timerBlocDescente.Enabled = true;
+      }
     }
+
+		private void recommencerToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			ReinitialiserJeu();
+		}
+
+		private void quitterToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			DialogResult result = MessageBox.Show("Êtes-vous sûr de vouloir quitter ?", "Quitter le jeu ?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+			if (result == DialogResult.Yes)
+			{
+				Application.Exit();
+			}
+		}
+		#endregion
+	}
 }
