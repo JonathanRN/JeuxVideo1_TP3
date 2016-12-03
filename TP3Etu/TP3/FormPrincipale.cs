@@ -51,16 +51,18 @@ namespace TP3
 			InitialiserSurfaceDeJeu(nbLignesJeu, nbColonnesJeu);
 			InitialiserTour();      
     }
-        void InitialiserTour()
-        {
+
+      void InitialiserTour()
+      {
       colonneCourante = nbColonnesJeu/2 - 1;
       ligneCourante = 1;
       blocCourant = ChoisirBlocAleatoire();
       CreeNouveauBlocActif(blocCourant);
       timerBlocDescente.Enabled = true;
       AfficherBlocActif(blocCourant);
+			//CreePieceGhost();
       score += AttribuerPoint( RetireerLignesCompletees());
-      lblScore.Text = score.ToString();           
+      lblScore.Text = score.ToString();
 			GererPartieTerminee();
     }
 
@@ -639,13 +641,11 @@ namespace TP3
                     
                 if (ligneCourante + blocActifY[i] < nbLignesJeu && colonneCourante + blocActifX[i] < nbColonnesJeu && colonneCourante + blocActifX[i] > 0 && ligneCourante + blocActifY[i] > 0 && tableauDeJeu[ligneCourante + blocActifY[i], colonneCourante + blocActifX[i]] == TypeBloc.None)
                 {
-                    peutBouger = true;
+									peutBouger = true;
                 }
                 else
                 {
-                       
-
-                    return false;
+									return false;
                 }
                    
 
@@ -695,6 +695,7 @@ namespace TP3
 		void ReinitialiserJeu()
 		{
 			lblScore.Text = "0";
+			score = 0;
 
 			// Tableau de jeu et picturesbox
 			for (int i = 0; i < nbLignesJeu; i++)
@@ -712,13 +713,16 @@ namespace TP3
 		{
 			for (int i = 0; i < tableauDeJeu.GetLength(0); i++)
 			{
-				if (BlocPeutBouger(TouchesJoueur.DéplacerBas) == true)
+				if (BlocPeutBouger(TouchesJoueur.DéplacerBas) == false)
 				{
-
+					toutesImagesVisuelles[nbLignesJeu - blocActifY[0], colonneCourante + blocActifX[0]].BackgroundImage = Properties.Resources.Ghost;
+					toutesImagesVisuelles[ligneCourante + blocActifY[1], colonneCourante + blocActifX[1]].BackgroundImage = Properties.Resources.Ghost;
+					toutesImagesVisuelles[ligneCourante + blocActifY[2], colonneCourante + blocActifX[2]].BackgroundImage = Properties.Resources.Ghost;
+					toutesImagesVisuelles[ligneCourante + blocActifY[3], colonneCourante + blocActifX[3]].BackgroundImage = Properties.Resources.Ghost;
 				}
 			}
 		}
-	
+
 
 		/// <summary>
 		/// Faites ici les appels requis pour vos tests unitaires.
