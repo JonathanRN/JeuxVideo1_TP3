@@ -34,6 +34,7 @@
             this.lblScore = new System.Windows.Forms.Label();
             this.gbSuivant = new System.Windows.Forms.GroupBox();
             this.timerBlocDescente = new System.Windows.Forms.Timer(this.components);
+            this.btnParametres = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // tableauJeu
@@ -129,11 +130,22 @@
             this.timerBlocDescente.Interval = 1000;
             this.timerBlocDescente.Tick += new System.EventHandler(this.timerBlocDescente_Tick);
             // 
+            // btnParametres
+            // 
+            this.btnParametres.Location = new System.Drawing.Point(348, 174);
+            this.btnParametres.Name = "btnParametres";
+            this.btnParametres.Size = new System.Drawing.Size(75, 23);
+            this.btnParametres.TabIndex = 5;
+            this.btnParametres.Text = "Paramètres";
+            this.btnParametres.UseVisualStyleBackColor = true;
+            this.btnParametres.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnParametres_MouseClick);
+            // 
             // FormPrincipale
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(452, 483);
+            this.Controls.Add(this.btnParametres);
             this.Controls.Add(this.lblScore);
             this.Controls.Add(this.lblTextScore);
             this.Controls.Add(this.gbSuivant);
@@ -156,6 +168,7 @@
 		private System.Windows.Forms.Label lblTextScore;
 		private System.Windows.Forms.Label lblScore;
         private System.Windows.Forms.Timer timerBlocDescente;
+        private System.Windows.Forms.Button btnParametres;
     }
 }
 

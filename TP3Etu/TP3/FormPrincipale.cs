@@ -60,20 +60,15 @@ namespace TP3
       timerBlocDescente.Enabled = true;
       AfficherBlocActif(blocCourant);
       score += AttribuerPoint( RetireerLignesCompletees());
-      lblScore.Text = score.ToString();
-            blocCourant = ChoisirBlocAleatoire();
-            CreeNouveauBlocActif(blocCourant);
-            timerBlocDescente.Enabled = true;
-            AfficherBlocActif(blocCourant);
-            score += AttribuerPoint( RetireerLignesCompletees());
-            lblScore.Text = score.ToString();
+      lblScore.Text = score.ToString();           
 			GererPartieTerminee();
     }
 
     private void InitialiserSurfaceDeJeu(int nbLignes, int nbCols)
     {
-      // Création d'une surface de jeu 10 colonnes x 20 lignes
-      toutesImagesVisuelles = new PictureBox[nbLignes, nbCols];
+           
+            // Création d'une surface de jeu 10 colonnes x 20 lignes
+            toutesImagesVisuelles = new PictureBox[nbLignes, nbCols];
       tableauJeu.Controls.Clear();
       tableauJeu.ColumnCount = toutesImagesVisuelles.GetLength(1);
       tableauJeu.RowCount = toutesImagesVisuelles.GetLength(0);
@@ -174,7 +169,7 @@ namespace TP3
 			}
 			return base.ProcessCmdKey(ref msg, keyData);
 		}
-
+      
     int AttribuerPoint(int score)
     {
       if (score == 1)
@@ -198,7 +193,10 @@ namespace TP3
           return score;
       }
     }
-
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
     int RetireerLignesCompletees()
     {
       int nbLigneComplete = 0;
@@ -222,15 +220,14 @@ namespace TP3
 			{
 				for (int j = 0; j < tableauDeJeu.GetLength(1); j++)
 				{
-					// if (tableauDeJeu[i, j] == TypeBloc.Gelé)
-					{
+					
 					tableauDeJeu[i + 1, j] = tableauDeJeu[i, j];
 					tableauDeJeu[i, j] = TypeBloc.None;
 					toutesImagesVisuelles[i + 1, j].BackgroundImage = toutesImagesVisuelles[i, j].BackgroundImage;
 					toutesImagesVisuelles[i, j].BackgroundImage = Properties.Resources.justedunoir;
 				}
 			}
-		}    
+		    
 	}
 
 		bool EstUneLigneComplete(int ligne)
@@ -754,6 +751,28 @@ namespace TP3
 			DeplacerBloc(TouchesJoueur.DéplacerBas);
 			AfficherBlocActif(blocCourant);
 		}
-		#endregion
-	}
+        #endregion
+
+        private void btnParametres_MouseClick(object sender, MouseEventArgs e)
+        {
+            timerBlocDescente.Enabled = false;
+            frmParametre parametre = new frmParametre();
+            parametre.ShowDialog();
+            DialogResult resultat = frmParametre.resultat;
+            if (resultat == DialogResult.OK)
+            {
+                nbLignesJeu = frmParametre.nbLignes;
+                nbColonnesJeu = frmParametre.nbColonnes;
+                tableauDeJeu = new TypeBloc[nbLignesJeu, nbColonnesJeu];
+                InitialiserSurfaceDeJeu(nbLignesJeu, nbColonnesJeu);
+                ReinitialiserJeu();
+            }
+            if (resultat == DialogResult.Cancel)
+            {
+                timerBlocDescente.Enabled = true;
+            }
+
+
+        }
+    }
 }
