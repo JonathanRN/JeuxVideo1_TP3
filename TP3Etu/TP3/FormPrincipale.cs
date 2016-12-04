@@ -35,11 +35,11 @@ namespace TP3
     {
       InitializeComponent( );
 		}
+
     #region Code fourni
     
     // Représentation visuelles du jeu en mémoire.
     static PictureBox[,] toutesImagesVisuelles = null;
-        
     
     /// <summary>
     /// Gestionnaire de l'événement se produisant lors du premier affichage 
