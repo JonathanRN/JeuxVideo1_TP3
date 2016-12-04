@@ -73,6 +73,16 @@ namespace TP3.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap cropped_tetris {
+            get {
+                object obj = ResourceManager.GetObject("cropped-tetris", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Ghost {
             get {
                 object obj = ResourceManager.GetObject("Ghost", resourceCulture);
@@ -137,6 +147,15 @@ namespace TP3.Properties {
             get {
                 object obj = ResourceManager.GetObject("T", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.IO.UnmanagedMemoryStream semblable à System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Tetris___GameBoy___Type_A {
+            get {
+                return ResourceManager.GetStream("Tetris___GameBoy___Type_A", resourceCulture);
             }
         }
         

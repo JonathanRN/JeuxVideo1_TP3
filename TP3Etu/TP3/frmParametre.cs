@@ -16,10 +16,12 @@ namespace TP3
         {
             InitializeComponent();
         }
+        public static bool musiqueEstCheck = true;
         public static DialogResult resultat;
         public static int nbLignes;
         public static int nbColonnes;
         public  int SetNbLignes()
+
         {
             return (int)numericUpDownLignes.Value;               
         }
@@ -27,11 +29,23 @@ namespace TP3
         {
             return (int)numericUpDownColonnes.Value;
         }
+        void SetCheckBoxMusique()
+        {
+            if (checkBox1.Checked == true)
+            {
+                musiqueEstCheck = true;
+            }
+            else
+            {
+                musiqueEstCheck = false;
+            }
+        }
 
         private void Parametre_Load(object sender, EventArgs e)
         {
             nbLignes = SetNbLignes();
             nbColonnes = SetNbColonnes();
+            SetCheckBoxMusique();
             
         }
        
@@ -53,6 +67,11 @@ namespace TP3
         private void Annuler_Click(object sender, EventArgs e)
         {
             resultat = Annuler.DialogResult;
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            SetCheckBoxMusique();
         }
     }
 }
